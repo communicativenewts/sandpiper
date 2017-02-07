@@ -1,11 +1,11 @@
 Next Gen Behavioral Analytics Platform
 
-WokeShark analytics is the leading behavioral analytics platform in the Bay Area. The company, which prides itself in tracking and converting users to full-time customers just struck a deal with leading ecommerce company Buyify.com.
+Shark Analytics is the leading behavioral analytics platform in the Bay Area. The company, which prides itself in tracking and converting users to full-time customers just struck a deal with leading ecommerce company Buyify.com.
 
-Buyify has historically had difficulty tracking how customers interact with the site, not to mention difficulty in properly reporting each event. The clear majority of analytics platforms focus on useless metrics like pageviews and time spent. However, using WokeSharks event driven system, Buyify was able to gain a clear picture on what converts a guest into a customer.
+Buyify has historically had difficulty tracking how customers interact with the site, not to mention difficulty in properly reporting each event. The clear majority of analytics platforms focus on useless metrics like pageviews and time spent. However, using Shark Analytics event driven system, Buyify was able to gain a clear picture on what converts a guest into a customer.
 
-“Before WokeSharks, I was a bit lost in terms of what we were going to do next, but after using the platform we were able to weed out the key events that increase our revenue."
+“Before Shark Analytics, I was a bit lost in terms of what we were going to do next, but after using the platform we were able to weed out the key events that increase our revenue."
 
 Jeff Bentler, CEO, Buyify.com
 
-With WokeSharks, getting started is simple, simply implement a single script across every page of your site and you're good to go!
+With Shark Analytics, getting started is simple, simply implement a single script across every page of your site and you're good to go!
