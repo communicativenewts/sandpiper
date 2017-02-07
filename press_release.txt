@@ -8,4 +8,4 @@ Buyify has historically had difficulty tracking how customers interact with the 
 
 Jeff Bentler, CEO, Buyify.com
 
-With WokeSharks, getting started is simple, simply implement a single script across every page of your site and your good to go!
+With WokeSharks, getting started is simple, simply implement a single script across every page of your site and you're good to go!
