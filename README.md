@@ -21,7 +21,7 @@ Development Team Members: Ian George, Jeff Bentler
 
 ##Usage
 
-This app relies on a separate add-on script that can be implemented on a third party's website to track clicks on that site. This script is in the Buyify repository <a href="https://github.com/wokesharks/buyify/blob/master/README.md">here</a>.
+This app relies on a separate add-on script that can be implemented on a third party's website to track clicks on that site. This script is in the Buyify repository <a href="https://github.com/wokesharks/buyify/blob/master/README.md">here</a>. The filename for the tracking library that is central the shark analytics application is named wokeSharks.js
 
 ##Requirements
 
