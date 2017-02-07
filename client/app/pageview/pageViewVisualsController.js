@@ -1,4 +1,4 @@
-angular.module('wokeshark.pageViewPlotly', [])
+angular.module('sharkanalytics.pageViewPlotly', [])
 
 .controller('pageViewVisualsController', function($scope, Pages) { // our bar graph controller
 

@@ -1,4 +1,4 @@
-#Wokeshark Analytics
+#Shark Analytics
 This analytics tool can be installed on any website and allows site owners to track visits to their page, as well as clicks on individual links. It uses Plotly to display site visits and link clicks visually, and a MongoDB database to store information.
 
 ##Team
@@ -21,7 +21,7 @@ Development Team Members: Ian George, Jeff Bentler
 
 ##Usage
 
-This app relies on a separate add-on script that can be implemented on a third party's website to track clicks on that site. This script is in the Buyify repository <a href="https://github.com/wokesharks/buyify/blob/master/README.md">here</a>. The filename for the tracking library that is central the shark analytics application is named wokeSharks.js
+This app relies on a separate add-on script that can be implemented on a third party's website to track clicks on that site. This script is in the Buyify repository <a href="https://github.com/sharkanalytics/buyify/blob/master/README.md">here</a>. The filename for the tracking library that is central the shark analytics application is named wokeSharks.js
 
 ##Requirements
 
@@ -45,7 +45,7 @@ npm install mongoose
 ##Roadmap
 
 View the project roadmap here:
-https://waffle.io/wokesharks/wokesharks
+https://waffle.io/sharkanalytics/sharkanalytics
 
 ##Contributing
 

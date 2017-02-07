@@ -1,5 +1,5 @@
 {
-  "name": "wokesharks",
+  "name": "sharkanalytics",
   "version": "1.0.0",
   "description": "analytics and data visualization tool",
   "scripts": {
@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bentljm/wokesharks.git"
+    "url": "https://github.com/sharkanalytics"
   },
   "keywords": [
     "analytics",
     "visualization"
   ],
-  "author": "wokesharks",
+  "author": "sharkanalytics",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/bentljm/wokesharks/issues"
+    "url": "https://github.com/sharkanalytics/sharkanalytics/issues"
   },
-  "homepage": "https://github.com/bentljm/wokesharks#readme",
+  "homepage": "https://github.com/sharkanalytics/sharkanalytics/blob/master/README.md",
   "dependencies": {
     "angular": "^1.6.1",
     "angular-chart.js": "^1.1.1",

@@ -1,4 +1,4 @@
-angular.module("wokeshark.pageView", [])
+angular.module("sharkanalytics.pageView", [])
 
 .controller("pageViewController", function($scope, Pages) {
 
