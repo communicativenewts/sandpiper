@@ -9,30 +9,30 @@ Development Team Members: Ian George, Jeff Bentler
 
 ##Table of Contents
 
-#Usage
-#Requirements
-#Development
-#Installing Dependencies
-#Tasks
-#Team
-#Contributing
+###Usage
+###Requirements
+###Development
+###Installing Dependencies
+###Tasks
+###Team
+###Contributing
 
  -
 
-#Usage
+##Usage
 
 This app relies on a separate add-on script that can be implemented on a third party's website to track clicks on that site. This script is in the Buyify repository <a href="https://github.com/wokesharks/buyify/blob/master/README.md">here</a>.
 
-#Requirements
+##Requirements
 
 Node 0.10.x
 Plot.ly
 D3
 Mongoose
 
-#Development
+##Development
 
-#Installing Dependencies
+##Installing Dependencies
 
 From within the root directory:
 
@@ -42,12 +42,12 @@ bower install
 npm install express
 npm install mongoose
 
-#Roadmap
+##Roadmap
 
 View the project roadmap here:
 https://waffle.io/wokesharks/wokesharks
 
-#Contributing
+##Contributing
 
 Features that remain to be implemented include:
 
