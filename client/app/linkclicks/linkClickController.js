@@ -13,6 +13,7 @@ $scope.setShowAll = function(value) { // Boolean function: if the controller div
 $scope.showDates = true;
 $scope.hideDates = false;
 $scope.setHideDates = function(value) { // Boolean function: same as above, but with the dates.
+    $scope.showDates = value;
     $scope.showDates = !value;
 }
 
