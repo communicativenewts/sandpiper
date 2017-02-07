@@ -1,8 +1,8 @@
-angular.module("wokeshark.linkClick", [])
+angular.module("sharkanalytics.linkClick", [])
 .controller("linkClickController", function($scope, Links) { // Controller: takes in Links object
 
 $scope.linkcounts = {}; // Object storing urls and their number of "hits"
-$scope.showAll = true; 
+$scope.showAll = true;
 $scope.hideAll = false;
 
 $scope.setShowAll = function(value) { // Boolean function: if the controller div is hidden and the relevant submit button is hit, we show it, and vice versa.
@@ -46,7 +46,7 @@ $scope.getAllLinks(); // Invoke function.
       if (err) { // error handling
         console.log('error', err)
       } else {
-        $scope.linkcounts[url] = {}; 
+        $scope.linkcounts[url] = {};
         $scope.linkcounts[url].count = 0;
         $scope.linkcounts[url].count = response.data.count; // get the number of times the url was clicked
         $scope.linkcounts[url].url = url;

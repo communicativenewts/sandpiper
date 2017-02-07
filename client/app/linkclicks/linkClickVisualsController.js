@@ -1,4 +1,4 @@
-angular.module('wokesharks.linkClickPlotly', [])
+angular.module('sharkanalyticss.linkClickPlotly', [])
 
 .controller('linkClickVisualsController', function ($scope, Links) { // our bar graph controller
 
@@ -17,7 +17,7 @@ angular.module('wokesharks.linkClickPlotly', [])
       });
   };
 
-  $scope.refresh(); 
+  $scope.refresh();
 })
 
 .controller("linkClickPieController", function ($scope, Links) { // our pie graph controller
@@ -69,10 +69,10 @@ angular.module('wokesharks.linkClickPlotly', [])
           if(dates[day]) { // If we already have an entry for this day within dates...
             dates[day] = dates[day] + 1; // Increment the count for this date.
           } else { // If not, instantiate it to one.
-            dates[day] = 1; 
+            dates[day] = 1;
           }
         })
-        var days = Object.keys(dates); 
+        var days = Object.keys(dates);
         for (var key in dates) {
           everyDay.push(dates[key]); // Push the date "counts" into everyDay for plotting.
         }

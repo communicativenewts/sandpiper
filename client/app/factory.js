@@ -1,4 +1,4 @@
-angular.module('wokeshark.factory', [])
+angular.module('sharkanalytics.factory', [])
 
 /* LINKS FACTORY */
 .factory('Links', function ($http) {
