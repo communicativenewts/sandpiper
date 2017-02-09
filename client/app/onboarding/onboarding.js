@@ -1,4 +1,4 @@
 angular.module('app.onboarding', [])
-  .controller('onboardingCtrl', function($scope) {
+  .controller('onboardingController', function($scope) {
     $scope.value = '(onboarding instructions here)';
   });
