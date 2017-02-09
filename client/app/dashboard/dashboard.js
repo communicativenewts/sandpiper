@@ -1,4 +1,4 @@
 angular.module('app.dashboard', [])
-  .controller('dashboardCtrl', function($scope) {
+  .controller('dashboardController', function($scope) {
     $scope.value = '(website list here)';
   });
