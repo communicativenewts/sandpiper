@@ -1,4 +1,16 @@
 <div>
   <div>Dashboard View</div>
   <div>{{value}}</div>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>URL</th>
+    </tr>
+    <tr ng-repeat="site in sites">
+      <td>{{site.title}}</td>
+      <td>{{site.url}}</td>
+    </tr>
+  </table>
+
 </div>
