@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 // *** USER UPDATES ID WHEN INJECTING INTO SITE ***
 // ************************************************
 
-  var siteId = '589d2f4e14c63c0b3092f221';
+  var siteId = '589e4b9c0e7c48029bbb0eaa'; // BUYIFY SITE ID
 
 // ************************************************
 

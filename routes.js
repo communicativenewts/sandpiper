@@ -5,7 +5,9 @@ var model = require('./models.js')
 module.exports = function(app, express) {
 
 
-  // ****************************************
+// ****************************************
+// *** NEW ROUTES *************************
+// ****************************************
 
   // ADD NEW USER
   app.post('/api/users/', function(req, res) {
@@ -87,27 +89,56 @@ module.exports = function(app, express) {
     console.log('Adding Click...');
     var siteId = req.params.id;
 
-    var newClick = new model.linkClickModel();
-    newClick._site = siteId;
-    newClick.url = req.body.url;
-    newClick.count = req.body.count;
-    newClick.date = req.body.date;
+    var url = req.body.url;
+    var date = Date();
 
-    newClick.save(function (err) {
+    model.linkClickModel.findOne({url: url}, function(err, click) {
+      // if click already in database, add to entry
+      if (click && click._site == siteId) {
+        console.log('Matching click found:', click);
+        click.count ++;
+        click.date.push(date);
+        click.save();
+        res.status(200).send('Click updated.');
+      } else {
+        // otherwise make new entry
+        console.log('No matching click found.');
+        var newClick = new model.linkClickModel();
+        newClick._site = siteId;
+        newClick.url = url;
+        newClick.count = 1;
+        newClick.date = date;
+
+        newClick.save(function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log('Click saved to DB.');
+            model.Site.findById(siteId, function(err, site) {
+              site.clicks.push(newClick);
+              site.save(function(err) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.status(200).send("Click saved to site.");
+                }
+              });
+            });
+          }
+        });
+      }
+    });
+  });
+
+  // GET SITE CLICK
+  app.get('/api/clicks/:id/', function(req, res) {
+    console.log('Finding Click...');
+    var clickId = req.params.id;
+    model.linkClickModel.findById(clickId, function(err, click) {
       if (err) {
         console.log(err);
       } else {
-        console.log('Click saved to DB.');
-        model.Site.findById(siteId, function(err, site) {
-          site.clicks.push(newClick);
-          site.save(function(err) {
-            if (err) {
-              console.log(err);
-            } else {
-              res.status(200).send("Click saved to site.");
-            }
-          });
-        });
+        res.status(200).send(click);
       }
     });
   });
@@ -142,6 +173,21 @@ module.exports = function(app, express) {
     });
   });
 
+  // GET SITE VIEW
+  app.get('/api/clicks/:id/', function(req, res) {
+    console.log('Finding Click...');
+    var clickId = req.params.id;
+    model.linkClickModel.findById(clickId, function(err, click) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(click);
+      }
+    });
+  });
+
+// ****************************************
+// ****************************************
 // ****************************************
 
 
