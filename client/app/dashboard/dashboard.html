@@ -1,15 +1,19 @@
 <div>
-  <div>Dashboard View</div>
-  <div>{{value}}</div>
+  <h2 align="center">My Managed Sites</h2>
 
-  <table>
+  <table align="center">
     <tr>
       <th>Title</th>
+      <th>Status</th>
       <th>URL</th>
+      <th>Tracked Since</th>
     </tr>
     <tr ng-repeat="site in sites">
       <td>{{site.title}}</td>
+      <td>{{site.status}}</td>
       <td>{{site.url}}</td>
+      <td>{{site.date}}</td>
+      <td><button>Stats</button></td>
     </tr>
   </table>
 
