@@ -2,6 +2,7 @@
 <html ng-app = 'sharkanalytics'>
   <head>
     <meta charset = 'utf'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Shark Analytics</title>
     <link rel='stylesheet' type='text/css' href="styles/style.css">
     <!--Importing bootstrap for page layout-->
@@ -10,28 +11,37 @@
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
     <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script type="text/javascript" src="https://cdn.auth0.com/js/lock/10.8/lock.min.js"></script>
+    <script src="lib/angular-lock/dist/angular-lock.js"></script>
+    <script src="lib/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
     <!--Importing plot.ly and d3-->
     <script src = "https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src = "https://d3js.org/d3.v4.min.js"></script>
     <script src = "app.js"></script>
+    <script src = "app.run.js"></script>
 
-    <script src = "./app/authorization/authorization.js"></script>
+    <script src = "app/authorization/authorization.js"></script>
      <!--Import client controller files-->
-    <script src = "./app/authorization/authorization.js"></script>
-    <script src = "./app/onboarding/onboarding.js"></script>
-    <script src = "./app/dashboard/dashboard.js"></script>
+    <script src = "app/authorization/authorization.js"></script>
+    <script src = "app/onboarding/onboarding.js"></script>
+    <script src = "app/dashboard/dashboard.js"></script>
 
      <!--Import pageViewController and pageViewVisualsController-->
-    <script src = "./app/pageview/pageViewController.js"></script>
-    <script src = "./app/pageview/pageViewVisualsController.js"></script>
+    <script src = "app/pageview/pageViewController.js"></script>
+    <script src = "app/pageview/pageViewVisualsController.js"></script>
      <!--Import linkClickController and linkClickVisualsController-->
-    <script src = "./app/linkclicks/linkClickController.js"></script>
-    <script src = "./app/linkclicks/linkClickVisualsController.js"></script>
+    <script src = "app/linkclicks/linkClickController.js"></script>
+    <script src = "app/linkclicks/linkClickVisualsController.js"></script>
      <!--Import factory.js file-->
-    <script src = "./app/factory.js"></script>
+    <script src = "app/services/factory.js"></script>
+    <script src = "app/components/auth/auth.service.js"></script>
+
    <!--  <script src = "./lib/chart.js/dist/Chart.min.js"></script>
     <script src = "./lib/angular-chart.js/dist/angular-chart.min.js"></script>
-  </head> -->
+    <script type="text/javascript" src="https://cdn.auth0.com/js/lock/10.8/lock.min.js"></script>  -->
+
+  </head>
 
 <!--   <body>
   <a href="http://hackreactor.com">
@@ -51,11 +61,11 @@
     <div class="row header">
       <div class='col-md-2'><h4>SHARK ANALYTICS</h4></div>
       <div class='col-md-1'><h4>|</h4></div>
-      <div class='col-md-2'><h4><a href='#/overall' routerLinkActive="active">Overall report</a></h4></div>
+      <div class='col-md-2'><h4><a ui-sref='overall' routerLinkActive="active">Overall report</a></h4></div>
       <div class='col-md-1'><h4>|</h4></div>
-      <div class='col-md-2'><h4><a href='#/pageView' routerLinkActive="active">Pageview report</a></h4></div>
+      <div class='col-md-2'><h4><a ui-sref='pageView' routerLinkActive="active">Pageview report</a></h4></div>
       <div class='col-md-1'><h4>|</h4></div>
-      <div class='col-md-2'><h4><a href='#/linkClick'>Link clicks report</a></h4></div>
+      <div class='col-md-2'><h4><a ui-sref='linkClick'>Link clicks report</a></h4></div>
     </div>
 
     <div class="row" ng-view>
