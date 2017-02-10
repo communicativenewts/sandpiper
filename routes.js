@@ -4,6 +4,75 @@ var model = require('./models.js')
 //export routes to app file
 module.exports = function(app, express) {
 
+
+  // ****************************************
+
+  // NEW USER
+  app.post('/api/users/', function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var email = req.body.email;
+    var newUser = {
+      username: username,
+      password: password,
+      email: email
+    };
+    console.log('Creating New User:', newUser);
+    model.User.create(newUser, function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send("Saved to DB.");
+      }
+    });
+  });
+
+  // GET USER
+  app.get('/api/users/:id/', function(req, res) {
+    console.log('Finding User...');
+    var userId = req.params.id;
+    model.User.findById(userId, function(err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(user);
+      }
+    });
+  });
+
+  // NEW SITE
+  app.post('/api/users/:id/sites/', function(req, res) {
+    console.log('Adding Site...');
+    var userId = req.params.id;
+
+    var newSite = new model.Site();
+    newSite._user = userId;
+    newSite.url = req.body.url;
+    newSite.title = req.body.title;
+
+    newSite.save(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Site saved to DB.');
+        model.User.findById(userId, function(err, user) {
+          user.sites.push(newSite);
+          user.save(function(err) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.status(200).send("Site saved to user.");
+            }
+          });
+        });
+      }
+    });
+
+  });
+
+// ****************************************
+
+
   /* linkClick route */
   //GET request for all data
   app.get('/linkClickAll', function(req, res) {
