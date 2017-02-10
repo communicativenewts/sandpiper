@@ -24,4 +24,12 @@ angular.module('app.dashboard', [])
         date: 'September 6, 2016'
       }
     ];
+
+    $scope.selected = 'none';
+
+    $scope.stats = function(site) {
+      //save selected site to factory
+      $scope.selected = site.id;
+      $location.path('/stats');
+    };
   });

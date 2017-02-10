@@ -9,12 +9,14 @@
       <th>Tracked Since</th>
     </tr>
     <tr ng-repeat="site in sites">
-      <td>{{site.title}}</td>
+      <td ng-click="stats(site)">{{site.title}}</td>
       <td>{{site.status}}</td>
       <td>{{site.url}}</td>
       <td>{{site.date}}</td>
-      <td><button>Stats</button></td>
+      <td><button ng-click="stats(site)">Stats</button></td>
     </tr>
   </table>
+
+  <div>{{selected}}</div>
 
 </div>
