@@ -23,7 +23,7 @@ var siteSchema = mongoose.Schema({
 //create new linkClick schema
 var linkClickSchema = mongoose.Schema({
   // _id: // AUTO-GENERATED
-  _site: { type: Number, ref: 'Site' },
+  _site: { type: mongoose.Schema.Types.ObjectId, ref: 'Site' },
   url: String,
   count: Number,
   date: Array
@@ -32,7 +32,7 @@ var linkClickSchema = mongoose.Schema({
 //create new pageView schema
 var pageViewSchema = mongoose.Schema({
   // _id: // AUTO-GENERATED
-  _site: { type: Number, ref: 'Site' },
+  _site: { type: mongoose.Schema.Types.ObjectId, ref: 'Site' },
   title: String,
   count: Number,
   date: Array

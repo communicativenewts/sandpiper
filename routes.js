@@ -7,7 +7,7 @@ module.exports = function(app, express) {
 
   // ****************************************
 
-  // NEW USER
+  // ADD NEW USER
   app.post('/api/users/', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -40,7 +40,7 @@ module.exports = function(app, express) {
     });
   });
 
-  // NEW SITE
+  // ADD NEW SITE TO USER
   app.post('/api/users/:id/sites/', function(req, res) {
     console.log('Adding Site...');
     var userId = req.params.id;
@@ -67,7 +67,79 @@ module.exports = function(app, express) {
         });
       }
     });
+  });
 
+  // GET SITE
+  app.get('/api/sites/:id/', function(req, res) {
+    console.log('Finding Site...');
+    var siteId = req.params.id;
+    model.Site.findById(siteId, function(err, site) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(site);
+      }
+    });
+  });
+
+  // ADD NEW SITE CLICK
+  app.post('/api/sites/:id/clicks/', function(req, res) {
+    console.log('Adding Click...');
+    var siteId = req.params.id;
+
+    var newClick = new model.linkClickModel();
+    newClick._site = siteId;
+    newClick.url = req.body.url;
+    newClick.count = req.body.count;
+    newClick.date = req.body.date;
+
+    newClick.save(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Click saved to DB.');
+        model.Site.findById(siteId, function(err, site) {
+          site.clicks.push(newClick);
+          site.save(function(err) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.status(200).send("Click saved to site.");
+            }
+          });
+        });
+      }
+    });
+  });
+
+  // ADD NEW SITE VIEW
+  app.post('/api/sites/:id/views/', function(req, res) {
+    console.log('Adding View...');
+    var siteId = req.params.id;
+
+    var newView = new model.pageViewModel();
+    newView._site = siteId;
+    newView.title = req.body.title;
+    newView.count = req.body.count;
+    newView.date = req.body.date;
+
+    newView.save(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('View saved to DB.');
+        model.Site.findById(siteId, function(err, site) {
+          site.views.push(newView);
+          site.save(function(err) {
+            if (err) {
+              console.log(err);
+            } else {
+              res.status(200).send("View saved to site.");
+            }
+          });
+        });
+      }
+    });
   });
 
 // ****************************************
