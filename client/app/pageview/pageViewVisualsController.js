@@ -39,7 +39,7 @@ angular.module('sharkanalytics.pageViewPlotly', [])
         allCounts.forEach(function(count) { // For each page...
           percentage.push(count/totalCount*100); // Get the percentage of how many times this page has been clicked over the total number of aggregate clicks.
         })
-        $scope.data = {values: percentage, labels: allTitles, type: 'pie'};
+        $scope.data = {values: percentage, labels: allTitles, showlegend: false, type: 'pie'};
         $scope.data = [$scope.data];
       });
   };
