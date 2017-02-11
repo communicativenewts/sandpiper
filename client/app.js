@@ -1,5 +1,6 @@
 angular.module('sharkanalytics',
-  ['app.authorization',
+  ['app.login',
+  'app.signup',
   'app.onboarding',
   'app.dashboard',
   'sharkanalytics.pageView',
@@ -11,9 +12,13 @@ angular.module('sharkanalytics',
 
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
-    .when('/authorization', {
-      templateUrl: 'app/authorization/authorization.html',
-      controller: 'authorizationController'
+    .when('/login', {
+      templateUrl: 'app/login/login.html',
+      controller: 'loginController'
+    })
+    .when('/signup', {
+      templateUrl: 'app/signup/signup.html',
+      controller: 'signupController'
     })
     .when('/onboarding', {
       templateUrl: 'app/onboarding/onboarding.html',

@@ -96,3 +96,47 @@ angular.module('sharkanalytics.factory', [])
     getSiteViews: getSiteViews
   };
 })
+
+.factory('Users', function ($http, $location){
+
+  var loginUser = function(data) {
+    return $http({
+      method: 'POST',
+      url: '/api/login/',
+      data: {
+        username: data.username,
+        password: data.password
+      }
+    }).then(function(resp) {
+      if (resp.data.username) {
+        $location.url('/dashboard');
+      } else {
+        $location.url('/login');
+      }
+    });
+  };
+
+  var createUser = function (data) {
+    return $http({
+      method: 'POST',
+      url: '/api/signup/',
+      data: {
+        email: data.email,
+        username: data.username,
+        password: data.password
+      }
+    }).then(function(resp) {
+      console.log('this is resp in factory.js', resp);
+      if (resp.data.username) {
+        $location.url('/onboarding');
+      } else {
+        $location.url('/signup');
+      }
+    })
+  };
+
+  return {
+    loginUser: loginUser,
+    createUser: createUser
+  }
+})
