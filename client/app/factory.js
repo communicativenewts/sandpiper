@@ -26,9 +26,25 @@ angular.module('sharkanalytics.factory', [])
     });
   };
 
+// *************************************
+// *** NEW FUNCTIONS *******************
+// *************************************
+
+  var getSiteClicks = function(siteId) {
+    return $http({
+      method: 'GET',
+      url: '/api/sites/' + siteId + '/clicks/'
+    }).then(function (response) {
+      return response;
+    });
+  };
+
+// *************************************
+
   return {
     getAllLinks: getAllLinks,
-    getLink: getLink
+    getLink: getLink,
+    getSiteClicks: getSiteClicks
   };
 })
 
@@ -59,8 +75,68 @@ angular.module('sharkanalytics.factory', [])
     });
   };
 
+// *************************************
+// *** NEW FUNCTIONS *******************
+// *************************************
+
+  var getSiteViews = function(siteId) {
+    return $http({
+      method: 'GET',
+      url: '/api/sites/' + siteId + '/views/'
+    }).then(function (response) {
+      return response;
+    });
+  };
+
+// *************************************
+
   return {
     getAllPages: getAllPages,
-    getPage: getPage
+    getPage: getPage,
+    getSiteViews: getSiteViews
   };
+})
+
+.factory('Users', function ($http, $location){
+
+  var loginUser = function(data) {
+    return $http({
+      method: 'POST',
+      url: '/api/login/',
+      data: {
+        username: data.username,
+        password: data.password
+      }
+    }).then(function(resp) {
+      if (resp.data.username) {
+        $location.url('/dashboard');
+      } else {
+        $location.url('/login');
+      }
+    });
+  };
+
+  var createUser = function (data) {
+    return $http({
+      method: 'POST',
+      url: '/api/signup/',
+      data: {
+        email: data.email,
+        username: data.username,
+        password: data.password
+      }
+    }).then(function(resp) {
+      console.log('this is resp in factory.js', resp);
+      if (resp.data.username) {
+        $location.url('/onboarding');
+      } else {
+        $location.url('/signup');
+      }
+    })
+  };
+
+  return {
+    loginUser: loginUser,
+    createUser: createUser
+  }
 })
