@@ -16,7 +16,7 @@
                       <div class="row">
                           <div class="col-lg-6">
                               <form role="form">
-                                  <div class="form-group">
+                                  <!-- <div class="form-group"> -->
 
                                     <h5>Setting up tracking for your website is as easy as 1-2-3! Just follow these simple steps:</h5>
 
@@ -28,13 +28,18 @@
                                       <br/>
 
                                       <label>Website</label>
-                                      <div class="form-group input-group">
-                                              <input type="text" class="form-control" placeholder="Enter url here">
+                                      <div class="form-group" id="site-input">
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="Enter url here" ng-model = newSite>
                                               <span class="input-group-btn">
-                                                  <button class="btn btn-success" type="button">  Submit
+                                                  <button class="btn btn-success" type="button" ng-click="checkURL()">  Submit
                                                   </button>
                                               </span>
+
                                           </div>
+
+                                          <label class="control-label">{{validURL}}</label>
+                                      </div>
 
                                       Correct format:
                                       <ul>
@@ -89,7 +94,7 @@
                                           <button type="button" class="btn btn-success btn-lg btn-block">Start Tracking</button>
 
                                       </div>
-                                  </div>
+                                  <!-- </div> -->
                               </form>
                           </div>
                       </div>
