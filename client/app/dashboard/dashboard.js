@@ -32,4 +32,11 @@ angular.module('app.dashboard', [])
       $scope.selected = site.id;
       $location.path('/stats');
     };
+
+    angular.element(document).ready(function () {
+        $('#dashboard-table').DataTable({
+            responsive: true
+        });
+    });
+
   });
