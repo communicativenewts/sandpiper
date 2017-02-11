@@ -64,7 +64,7 @@ module.exports = function(app, express) {
             if (err) {
               console.log(err);
             } else {
-              res.status(200).send("Site saved to user.");
+              res.status(200).send(newSite);
             }
           });
         });
