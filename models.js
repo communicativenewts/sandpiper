@@ -16,6 +16,7 @@ var siteSchema = mongoose.Schema({
   _user: { type: mongoose.Schema.ObjectId, ref: 'User' },
   url: String,
   title: String,
+  date: String,
   clicks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'linkClickSchema' }],
   views: [{ type: mongoose.Schema.Types.ObjectId, ref: 'pageViewSchema' }]
 });
