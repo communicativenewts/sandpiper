@@ -1,5 +1,78 @@
+<div id="page-wrapper" ng-controller="linkClickController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Overall Analytics</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+
+            <div class="well well-lg" ng-controller='linkClickVisualsController'>
+              <h4>Link Clicks</h4>
+              <overall-plot>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+
+            <div class="well well-lg" ng-controller='linkClickPieController'>
+              <h4>Percentage of Total Clicks</h4>
+              <overall-plot>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+
+            <div class="well well-lg" ng-controller='linkClickDayController'>
+              <h4>Total Clicks Per Day</h4>
+              <overall-plot>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+
+            <div class="well well-lg" ng-controller='pageViewVisualsController'>
+              <h4>Page Views</h4>
+              <overall-plot>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+
+            <div class="well well-lg" ng-controller='pageViewPieController'>
+              <h4>Percentage of Total Views</h4>
+              <overall-plot>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+
+            <div class="well well-lg" ng-controller='pageViewDayController'>
+              <h4>Total Page Views Per Day</h4>
+              <overall-plot>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 <!--Center featured chart -->
-  <div ng-controller='linkClickController'>
+<!--   <div ng-controller='linkClickController'>
     <div class='overall' ng-controller='linkClickVisualsController'>
     <h4>Link Clicks</h4>
       <overall-plot width=150, height=100>
@@ -24,4 +97,4 @@
     <h4>Total Page Views Per Day</h4>
       <overall-plot width=150, height=100>
     </div>
-  </div>
+  </div> -->
