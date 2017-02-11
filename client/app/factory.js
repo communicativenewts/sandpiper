@@ -1,5 +1,20 @@
 angular.module('sharkanalytics.factory', [])
 
+/* USERS FACTORY */
+.factory('Users', function($http) {
+  // logged in userId
+
+  var getAllSites = function(userId) {
+    return $http({
+      method: 'GET',
+      url: 'api/users/'
+    })
+  };
+
+  // register's site to database
+
+})
+
 /* LINKS FACTORY */
 .factory('Links', function ($http) {
 
