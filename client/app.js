@@ -4,7 +4,7 @@ angular.module('sharkanalytics',
   'app.dashboard',
   'sharkanalytics.pageView',
   'sharkanalytics.linkClick',
-  //'sharkanalytics.factory',
+  'sharkanalytics.factory',
   'sharkanalyticss.linkClickPlotly',
   'sharkanalytics.pageViewPlotly',
   'ngRoute'])
