@@ -51,6 +51,7 @@ module.exports = function(app, express) {
     newSite._user = userId;
     newSite.url = req.body.url;
     newSite.title = req.body.title;
+    newSite.date = Date();
 
     newSite.save(function (err) {
       if (err) {
