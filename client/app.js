@@ -45,6 +45,6 @@ angular.module('sharkanalytics',
       controller: 'linkClickVisualsController'
     })
     .otherwise({
-      redirectTo: '/'
+      redirectTo: '/login'
     })
   })
