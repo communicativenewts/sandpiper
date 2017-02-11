@@ -67,19 +67,21 @@ angular.module('sharkanalytics.factory', [])
 
 .factory('Users', function ($http){
 
-  var findUser = function(username) {
+  var loginUser = function(data) {
     return $http({
-      method: 'GET',
-      url: '/api/users:' + username
-    }).then(function(response) {
-      return response.data;
+      method: 'POST',
+      url: '/api/login/',
+      params: {
+        username: data.username,
+        password: data.password
+      }
     });
   };
 
   var createUser = function (data) {
     return $http({
       method: 'POST',
-      url: '/api/users',
+      url: '/api/signup/',
       params: {
         email: data.email,
         username: data.username,
@@ -89,7 +91,7 @@ angular.module('sharkanalytics.factory', [])
   };
 
   return {
-    findUser: findUser,
+    loginUser: loginUser,
     createUser: createUser
   }
 })
