@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app = 'sharkanalytics'>
 
 <head>
 
@@ -69,7 +69,6 @@
 <body>
 
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <img src='./images/sandpiper.png' height=100px margin=15px>
@@ -192,23 +191,23 @@
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="#/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Stats<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Page Views</a>
+                                    <a href="#/pageView">Page Views</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Link Clicks</a>
+                                    <a href="#/linkClick">Link Clicks</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
 
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Onboarding</a>
+                            <a href="#/onboarding"><i class="fa fa-edit fa-fw"></i> Onboarding</a>
                         </li>
 
                     </ul>
@@ -236,7 +235,6 @@
     </div>
  -->
     <div class="row" ng-view>
-
 
 
     <!-- jQuery -->
