@@ -1,4 +1,4 @@
-<div ng-controller='pageViewController'>
+<!-- <div ng-controller='pageViewController'>
 
 <div class = "row">
   <div class="col-md-3"></div>
@@ -15,10 +15,10 @@
     <h4>{{pagename}}</h4>
     <h4>Total page views for your site:</h4>
     <div class="pageviews">{{views}}</div>
-  </div>
+  </div> -->
 
   <!--Center featured chart -->
-  <div class="col-md-6">
+  <!-- <div class="col-md-6">
     <h4 align='center'>Page Views</h4>
     <div ng-controller='pageViewVisualsController'>
       <line-plot id='pageView' width=300, height=200>
@@ -31,10 +31,10 @@
     <div ng-controller='pageViewDayController'>
       <line-plot width=300, height=200>
     </div><br>
-  </div>
+  </div> -->
 <!--Right featured chart -->
 
-<div class="col-md-4" ng-hide="hideAll">
+<!-- <div class="col-md-4" ng-hide="hideAll">
 
   <div ng-repeat="page in pageProperties">
     <h4>{{page.title}}:  {{page.count}}</h4>
@@ -44,12 +44,105 @@
     </ul>
   </div>
 
-  </div>
+  </div> -->
 
 <!--close main container-->
-</div>
+<!-- </div> -->
 
 <!-- close page container-->
+<!-- </div> -->
+
+
+<div id="page-wrapper" ng-controller="pageViewController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Analytics</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Website Name
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="/#home-pills" data-toggle="tab">Total</a>
+                        </li>
+                        <li><a href="/#profile-pills" data-toggle="tab">Percentage</a>
+                        </li>
+                        <li><a href="/#messages-pills" data-toggle="tab">Per Day</a>
+                        </li>
+                        <li><a href="/#settings-pills" data-toggle="tab">Other</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="home-pills">
+                            <h4>Total Views per Page</h4>
+                            <div class="col-md-6">
+                              <div ng-controller='pageViewVisualsController'>
+                                <line-plot id='pageView' width=500, height=200>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile-pills">
+                            <h4>Percentage of Total Views</h4>
+                            <div class="col-md-6">
+                              <div ng-controller='pageViewPieController'>
+                                <line-plot width=500, height=200>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="messages-pills">
+                            <h4>Total Page Views per Day</h4>
+                            <div class="col-md-6">
+                              <div ng-controller='pageViewDayController'>
+                                <line-plot width=500, height=200>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="settings-pills">
+                            <h4>Settings Tab</h4>
+                            <h4>Total Views per Page</h4>
+                            <div class="col-md-6">
+                              <div ng-controller='pageViewVisualsController'>
+                                <line-plot id='pageView' width=300, height=200>
+                              </div><br><br>
+                              <h4 align='center'>Percentage of Total Views</h4>
+                              <div ng-controller='pageViewPieController'>
+                                <line-plot width=300, height=200>
+                              </div><br>
+                              <h4 align='center'>Total Page Views Per Day</h4>
+                              <div ng-controller='pageViewDayController'>
+                                <line-plot width=300, height=200>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="well well-lg">
+                <h4>Large Well</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
