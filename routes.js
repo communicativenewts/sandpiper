@@ -92,10 +92,10 @@ module.exports = function(app, express) {
     var url = req.body.url;
     var date = Date();
 
-    model.linkClickModel.findOne({url: url}, function(err, click) {
+    model.linkClickModel.findOne({url: url, _site: siteId}, function(err, click) {
       // if click already in database, add to entry
-      if (click && click._site == siteId) {
-        console.log('Matching click found:', click);
+      if (click) {
+        console.log('Matching click:', click);
         click.count ++;
         click.date.push(date);
         click.save();
@@ -107,7 +107,7 @@ module.exports = function(app, express) {
         newClick._site = siteId;
         newClick.url = url;
         newClick.count = 1;
-        newClick.date = date;
+        newClick.date = [date];
 
         newClick.save(function (err) {
           if (err) {
@@ -148,43 +148,48 @@ module.exports = function(app, express) {
     console.log('Adding View...');
     var siteId = req.params.id;
 
-    var newView = new model.pageViewModel();
-    newView._site = siteId;
-    newView.title = req.body.title;
-    newView.count = req.body.count;
-    newView.date = req.body.date;
+    var title = req.body.title;
+    var date = Date();
 
-    newView.save(function (err) {
-      if (err) {
-        console.log(err);
+    model.pageViewModel.findOne({title: title, _site: siteId}, function(err, view) {
+      // if view already in database, add to entry
+      if (view) {
+        console.log('Matching view:', view);
+        view.count ++;
+        view.date.push(date);
+        view.save();
+        res.status(200).send('view updated.');
       } else {
-        console.log('View saved to DB.');
-        model.Site.findById(siteId, function(err, site) {
-          site.views.push(newView);
-          site.save(function(err) {
-            if (err) {
-              console.log(err);
-            } else {
-              res.status(200).send("View saved to site.");
-            }
-          });
+        // otherwise make new entry
+        console.log('No matching view found.');
+        var newView = new model.pageViewModel();
+        newView._site = siteId;
+        newView.title = title;
+        newView.count = 1;
+        newView.date = [date];
+
+        newView.save(function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log('View saved to DB.');
+            model.Site.findById(siteId, function(err, site) {
+              site.views.push(newView);
+              site.save(function(err) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.status(200).send("View saved to site.");
+                }
+              });
+            });
+          }
         });
       }
     });
   });
 
   // GET SITE VIEW
-  app.get('/api/clicks/:id/', function(req, res) {
-    console.log('Finding Click...');
-    var clickId = req.params.id;
-    model.linkClickModel.findById(clickId, function(err, click) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).send(click);
-      }
-    });
-  });
 
 // ****************************************
 // ****************************************
