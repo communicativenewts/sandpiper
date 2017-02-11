@@ -38,7 +38,7 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
         allCounts.forEach(function(count) { // For each link...
           percentage.push(count/totalCount*100) // Get the percentage of how many times this link has been clicked over the total number of aggregate clicks.
         })
-        $scope.data = {values: percentage, labels: allUrls, type: 'pie'}; // Set our pie graph
+        $scope.data = {values: percentage, labels: allUrls, showlegend: false, type: 'pie'}; // Set our pie graph
         $scope.data = [$scope.data];
       });
   };
