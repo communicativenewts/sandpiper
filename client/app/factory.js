@@ -97,15 +97,21 @@ angular.module('sharkanalytics.factory', [])
   };
 })
 
-.factory('Users', function ($http){
+.factory('Users', function ($http, $location){
 
   var loginUser = function(data) {
     return $http({
       method: 'POST',
       url: '/api/login/',
-      params: {
+      data: {
         username: data.username,
         password: data.password
+      }
+    }).then(function(resp) {
+      if (resp.data.username) {
+        $location.url('/dashboard');
+      } else {
+        $location.url('/login');
       }
     });
   };
@@ -114,12 +120,19 @@ angular.module('sharkanalytics.factory', [])
     return $http({
       method: 'POST',
       url: '/api/signup/',
-      params: {
+      data: {
         email: data.email,
         username: data.username,
         password: data.password
       }
-    });
+    }).then(function(resp) {
+      console.log('this is resp in factory.js', resp);
+      if (resp.data.username) {
+        $location.url('/onboarding');
+      } else {
+        $location.url('/signup');
+      }
+    })
   };
 
   return {
