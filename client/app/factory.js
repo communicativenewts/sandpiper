@@ -64,3 +64,32 @@ angular.module('sharkanalytics.factory', [])
     getPage: getPage
   };
 })
+
+.factory('Users', function ($http){
+
+  var findUser = function(username) {
+    return $http({
+      method: 'GET',
+      url: '/api/users:' + username
+    }).then(function(response) {
+      return response.data;
+    });
+  };
+
+  var createUser = function (data) {
+    return $http({
+      method: 'POST',
+      url: '/api/users',
+      params: {
+        email: data.email,
+        username: data.username,
+        password: data.password
+      }
+    });
+  };
+
+  return {
+    findUser: findUser,
+    createUser: createUser
+  }
+})
