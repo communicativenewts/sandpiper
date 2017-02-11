@@ -10,7 +10,7 @@ module.exports = function(app, express) {
 // ****************************************
 
   // ADD NEW USER
-  app.post('/api/users/', function(req, res) {
+  app.post('/api/signup/', function(req, res) {
     var newUser = new model.User();
     newUser.username = req.body.username;
     newUser.password = req.body.password;
@@ -33,6 +33,41 @@ module.exports = function(app, express) {
         } else {
           console.log('User already exists.');
           res.status(200).send('User already exists.');
+        }
+      }
+    });
+  });
+
+  // LOGIN TO ACCOUNT
+  app.post('/api/login/', function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    console.log('Checking for user...');
+    model.User.findOne({username: username}, function(err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        if (!user) {
+          console.log('User does not exist.');
+          res.redirect('/');
+        } else {
+          // COMPARE PASSWORDS
+          // bcrypt.compare(password, user.get('password'), function(err, match) {
+          //   if (match) {
+          //     util.createSession(req, res, user);
+          //   } else {
+          //     res.redirect('/login');
+          //   }
+          // });
+          if (user.password === password) {
+            // CREATE SESSION
+            console.log('Successfully Logged In.');
+            res.status(200).send(user);
+          } else {
+            console.log('Incorrect Password.');
+            res.redirect('/');
+          }
         }
       }
     });
