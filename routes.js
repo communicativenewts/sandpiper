@@ -230,13 +230,13 @@ module.exports = function(app, express) {
 
   // GET SPECIFIC SITE VIEW
   app.get('/api/views/:id/', function(req, res) {
-    console.log('Finding Click...');
-    var clickId = req.params.id;
-    model.linkClickModel.findById(clickId, function(err, click) {
+    console.log('Finding View...');
+    var viewId = req.params.id;
+    model.pageViewModel.findById(viewId, function(err, view) {
       if (err) {
         console.log(err);
       } else {
-        res.status(200).send(click);
+        res.status(200).send(view);
       }
     });
   });
