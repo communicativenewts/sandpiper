@@ -39,7 +39,7 @@ angular.module('sharkanalytics.pageViewPlotly', [])
         allCounts.forEach(function(count) { // For each page...
           percentage.push(count/totalCount*100); // Get the percentage of how many times this page has been clicked over the total number of aggregate clicks.
         })
-        $scope.data = {values: percentage, labels: allTitles, type: 'pie'};
+        $scope.data = {values: percentage, labels: allTitles, showlegend: false, type: 'pie'};
         $scope.data = [$scope.data];
       });
   };
@@ -90,8 +90,8 @@ angular.module('sharkanalytics.pageViewPlotly', [])
   function pageFunc(scope, element, attrs) {
       scope.$watch('data', function (plots) {
         var layout = {
-          width: 600,
-          height: 300,
+          width: 315,
+          height: 250,
           margin: { 't': 40, 'b':20, 'l':40, 'r':0 },
         };
 
@@ -111,8 +111,8 @@ angular.module('sharkanalytics.pageViewPlotly', [])
   function pageFunc(scope, element, attrs) {
       scope.$watch('data', function (plots) {
         var layout = {
-          width: 400,
-          height: 200,
+          width: 315,
+          height: 250,
           margin: { 't': 40, 'b':20, 'l':40, 'r':0 },
         };
 

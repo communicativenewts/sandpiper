@@ -28,6 +28,10 @@ angular.module('sharkanalytics',
       templateUrl: 'app/dashboard/dashboard.html',
       controller: 'dashboardController'
     })
+    .when('/overallStats', {
+      templateUrl: 'app/overall/overall.html',
+      controller: 'linkClickController'
+    })
     .when('/pageView', {
       templateUrl: 'app/pageview/pageView.html',
       controller: 'pageViewController'
