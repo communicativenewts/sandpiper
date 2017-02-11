@@ -1,3 +1,55 @@
+<div id="page-wrapper" ng-controller="pageViewController">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Page View Analytics</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="well well-lg">
+                <h4>Total Views per Page</h4>
+
+                <div ng-controller='pageViewVisualsController'>
+                  <line-plot id='pageView' width=500, height=200>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="well well-lg">
+                <h4>Percentage of Total Views</h4>
+
+                <div ng-controller='pageViewPieController'>
+                  <line-plot width=500, height=200>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="well well-lg">
+                <h4>Total Page Views per Day</h4>
+
+                <div ng-controller='pageViewDayController'>
+                  <line-plot width=500, height=200>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- <div ng-controller='pageViewController'>
 
 <div class = "row">
@@ -53,24 +105,17 @@
 <!-- </div> -->
 
 
-<div id="page-wrapper" ng-controller="pageViewController">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Analytics</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
+
+
+    <!-- <div class="row">
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Website Name
                 </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
+                <div class="panel-body"> -->
                     <!-- Nav tabs -->
-                    <ul class="nav nav-pills">
+                    <!-- <ul class="nav nav-pills">
                         <li class="active"><a href="/#home-pills" data-toggle="tab">Total</a>
                         </li>
                         <li><a href="/#profile-pills" data-toggle="tab">Percentage</a>
@@ -79,10 +124,10 @@
                         </li>
                         <li><a href="/#settings-pills" data-toggle="tab">Other</a>
                         </li>
-                    </ul>
+                    </ul> -->
 
                     <!-- Tab panes -->
-                    <div class="tab-content">
+                    <!-- <div class="tab-content">
                         <div class="tab-pane fade in active" id="home-pills">
                             <h4>Total Views per Page</h4>
                             <div class="col-md-6">
@@ -125,24 +170,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
+                </div> -->
+          <!--   </div>
         </div>
-        <!-- /.col-lg-6 -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
-        <!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <div class="well well-lg">
-                <h4>Large Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
+    </div> -->
 
 
