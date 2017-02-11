@@ -35,7 +35,7 @@ angular.module('sharkanalytics.factory', [])
       method: 'GET',
       url: '/api/sites/' + siteId + '/clicks/'
     }).then(function (response) {
-      return response;
+      return response.data;
     });
   };
 
@@ -84,7 +84,7 @@ angular.module('sharkanalytics.factory', [])
       method: 'GET',
       url: '/api/sites/' + siteId + '/views/'
     }).then(function (response) {
-      return response;
+      return response.data;
     });
   };
 
@@ -97,8 +97,37 @@ angular.module('sharkanalytics.factory', [])
   };
 })
 
+/* USERS FACTORY */
 .factory('Users', function ($http, $location){
+  // CACHE USER ID
+  var userId = null;
 
+  // RETURN USER ID
+  var getUserId = function() {
+    return userId;
+  };
+
+  // RETRIEVE ALL USER SITES
+  var getAllSites = function(userId) {
+    return $http({
+      method: 'GET',
+      url: '/api/users/' + userId + '/sites/'
+    }).then(function(response) {
+      return response.data;
+    })
+  };
+
+  // REGISTER NEW SITE TO USER
+  var addNewSite = function(userId) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/' + userId + '/sites/'
+    }).then(function(response) {
+      return response.data;
+    })
+  };
+
+  // LOGIN USER
   var loginUser = function(data) {
     return $http({
       method: 'POST',
@@ -109,6 +138,7 @@ angular.module('sharkanalytics.factory', [])
       }
     }).then(function(resp) {
       if (resp.data.username) {
+        userId = resp.data._id;
         $location.url('/dashboard');
       } else {
         $location.url('/login');
@@ -116,6 +146,7 @@ angular.module('sharkanalytics.factory', [])
     });
   };
 
+  // CREATE NEW USER
   var createUser = function (data) {
     return $http({
       method: 'POST',
@@ -128,6 +159,7 @@ angular.module('sharkanalytics.factory', [])
     }).then(function(resp) {
       console.log('this is resp in factory.js', resp);
       if (resp.data.username) {
+        userId = resp.data._id;
         $location.url('/onboarding');
       } else {
         $location.url('/signup');
@@ -137,6 +169,9 @@ angular.module('sharkanalytics.factory', [])
 
   return {
     loginUser: loginUser,
-    createUser: createUser
+    createUser: createUser,
+    getUserId: getUserId,
+    getAllSites: getAllSites,
+    addNewSite: addNewSite
   }
 })
