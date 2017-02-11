@@ -26,9 +26,25 @@ angular.module('sharkanalytics.factory', [])
     });
   };
 
+// *************************************
+// *** NEW FUNCTIONS *******************
+// *************************************
+
+  var getSiteClicks = function(siteId) {
+    return $http({
+      method: 'GET',
+      url: '/api/sites/' + siteId + '/clicks/'
+    }).then(function (response) {
+      return response;
+    });
+  };
+
+// *************************************
+
   return {
     getAllLinks: getAllLinks,
-    getLink: getLink
+    getLink: getLink,
+    getSiteClicks: getSiteClicks
   };
 })
 
@@ -59,8 +75,24 @@ angular.module('sharkanalytics.factory', [])
     });
   };
 
+// *************************************
+// *** NEW FUNCTIONS *******************
+// *************************************
+
+  var getSiteViews = function(siteId) {
+    return $http({
+      method: 'GET',
+      url: '/api/sites/' + siteId + '/views/'
+    }).then(function (response) {
+      return response;
+    });
+  };
+
+// *************************************
+
   return {
     getAllPages: getAllPages,
-    getPage: getPage
+    getPage: getPage,
+    getSiteViews: getSiteViews
   };
 })
