@@ -13,21 +13,27 @@
                 <h4>Total Clicks per Link</h4>
 
                 <div ng-controller='linkClickVisualsController'>
-                  <line-plot width=300, height=200>
+                  <line-plot>
                 </div>
 
             </div>
         </div>
-    </div>
-    <!-- /.row -->
-    <div class="row">
-        <!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <div class="well well-lg">
                 <h4>Percentage of Total Link Clicks</h4>
 
                 <div ng-controller='linkClickPieController'>
-                  <line-plot width=300, height=200>
+                  <line-plot>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="well well-lg">
+                <h4>Total Link Clicks per Day</h4>
+
+                <div ng-controller='linkClickDayController'>
+                  <line-plot>
                 </div>
 
             </div>
@@ -36,13 +42,11 @@
     <!-- /.row -->
     <div class="row">
         <!-- /.col-lg-4 -->
-        <div class="col-lg-4">
+        <div class="col-lg-4" ng-repeat="link in linkcounts">
             <div class="well well-lg">
-                <h4>Total Link Clicks per Day</h4>
 
-                <div ng-controller='linkClickDayController'>
-                  <line-plot width=300, height=200>
-                </div>
+              <h4>{{link.url}}:  {{link.count}}</h4>
+              <ul><li ng-repeat="date in link.dates track by $index">{{date}}</li></ul>
 
             </div>
         </div>
