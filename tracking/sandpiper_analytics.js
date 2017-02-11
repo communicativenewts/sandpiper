@@ -18,11 +18,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   //set Sandpiper Session
   sessionStorage.setItem("sandpiperSession", true);
 
-  //add endpoints here
-  // const linkClickEndpoint = "http://localhost:8080/linkClick";
-  // const pageViewEndpoint = "http://localhost:8080/pageView";
-
-
 // *************************************************
 // *** NEW ENDPOINTS / USE SITE ID FROM DATABASE ***
 // *************************************************
@@ -32,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var viewEndpoint = api + '/views';
 
 // *************************************************
-
 
   //Generic Tracking Mechanism
   sandpiperMetrics.report = function(eventData, eventType, endpoint, metaData) {

@@ -24,16 +24,16 @@ module.exports = function(app, express) {
       if (err) {
         console.log(err);
       } else {
-        res.status(200).send("Saved to DB.");
+        res.status(200).send("User saved to DB.");
       }
     });
   });
 
-  // GET USER
-  app.get('/api/users/:id/', function(req, res) {
+  // GET USER BY USERNAME
+  app.get('/api/users/:username/', function(req, res) {
     console.log('Finding User...');
-    var userId = req.params.id;
-    model.User.findById(userId, function(err, user) {
+    var username = req.params.username;
+    model.User.findOne({username: username}, function(err, user) {
       if (err) {
         console.log(err);
       } else {
@@ -71,7 +71,20 @@ module.exports = function(app, express) {
     });
   });
 
-  // GET SITE
+  // GET ALL USER SITES
+  app.get('/api/users/:id/sites', function(req, res) {
+    console.log('Finding all user sites...');
+    var userId = req.params.id;
+    model.Site.find({_user: userId}, function(err, sites) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(sites);
+      }
+    });
+  });
+
+  // GET SPECIFIC SITE
   app.get('/api/sites/:id/', function(req, res) {
     console.log('Finding Site...');
     var siteId = req.params.id;
@@ -130,7 +143,20 @@ module.exports = function(app, express) {
     });
   });
 
-  // GET SITE CLICK
+  // GET ALL CLICKS FOR SITE
+  app.get('/api/sites/:id/clicks/', function(req, res) {
+    console.log('Finding site clicks...');
+    var siteId = req.params.id;
+    model.linkClickModel.find({_site: siteId}, function(err, clicks) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(clicks);
+      }
+    });
+  });
+
+  // GET SPECIFIC SITE CLICK
   app.get('/api/clicks/:id/', function(req, res) {
     console.log('Finding Click...');
     var clickId = req.params.id;
@@ -189,7 +215,31 @@ module.exports = function(app, express) {
     });
   });
 
-  // GET SITE VIEW
+  // GET ALL VIEWS FOR SITE
+  app.get('/api/sites/:id/views/', function(req, res) {
+    console.log('Finding site views...');
+    var siteId = req.params.id;
+    model.pageViewModel.find({_site: siteId}, function(err, views) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(views);
+      }
+    });
+  });
+
+  // GET SPECIFIC SITE VIEW
+  app.get('/api/views/:id/', function(req, res) {
+    console.log('Finding Click...');
+    var clickId = req.params.id;
+    model.linkClickModel.findById(clickId, function(err, click) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(click);
+      }
+    });
+  });
 
 // ****************************************
 // ****************************************
