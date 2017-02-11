@@ -10,21 +10,65 @@ module.exports = function(app, express) {
 // ****************************************
 
   // ADD NEW USER
-  app.post('/api/users/', function(req, res) {
-    var username = req.body.username;
-    var password = req.body.password;
-    var email = req.body.email;
-    var newUser = {
-      username: username,
-      password: password,
-      email: email
-    };
-    console.log('Creating New User:', newUser);
-    model.User.create(newUser, function(err) {
+  app.post('/api/signup/', function(req, res) {
+    var newUser = new model.User();
+    newUser.username = req.body.username;
+    newUser.password = req.body.password;
+    newUser.email = req.body.email;
+
+    console.log('Checking for username conflict...');
+    model.User.findOne({username: newUser.username}, function(err, user) {
       if (err) {
         console.log(err);
       } else {
-        res.status(200).send("User saved to DB.");
+        if (!user) {
+          newUser.save(function (err) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('New user created.');
+              res.status(200).send(newUser);
+            }
+          });
+        } else {
+          console.log('User already exists.');
+          res.status(200).send('User already exists.');
+        }
+      }
+    });
+  });
+
+  // LOGIN TO ACCOUNT
+  app.post('/api/login/', function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+
+    console.log('Checking for user...');
+    model.User.findOne({username: username}, function(err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        if (!user) {
+          console.log('User does not exist.');
+          res.redirect('/');
+        } else {
+          // COMPARE PASSWORDS
+          // bcrypt.compare(password, user.get('password'), function(err, match) {
+          //   if (match) {
+          //     util.createSession(req, res, user);
+          //   } else {
+          //     res.redirect('/login');
+          //   }
+          // });
+          if (user.password === password) {
+            // CREATE SESSION
+            console.log('Successfully Logged In.');
+            res.status(200).send(user);
+          } else {
+            console.log('Incorrect Password.');
+            res.redirect('/');
+          }
+        }
       }
     });
   });
@@ -51,6 +95,7 @@ module.exports = function(app, express) {
     newSite._user = userId;
     newSite.url = req.body.url;
     newSite.title = req.body.title;
+    newSite.date = Date();
 
     newSite.save(function (err) {
       if (err) {
@@ -63,7 +108,7 @@ module.exports = function(app, express) {
             if (err) {
               console.log(err);
             } else {
-              res.status(200).send("Site saved to user.");
+              res.status(200).send(newSite);
             }
           });
         });

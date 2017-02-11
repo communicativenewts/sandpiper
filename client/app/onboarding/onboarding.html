@@ -1,105 +1,121 @@
-<div>
-  <div>Onboarding View</div>
-  <div>{{value}}</div>
+<div id="wrapper">
+   <div id="page-wrapper">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">Onboarding</h1>
+        </div>
+      </div>
 
-  <div class="row">
-      <div class="col-lg-12">
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  Basic Form Elements
-              </div>
-              <div class="panel-body">
-                  <div class="row">
-                      <div class="col-lg-6">
-                          <form role="form">
-                              <div class="form-group">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      Onboarding
+                  </div>
+                  <div class="panel-body">
+                      <div class="row">
+                          <div class="col-lg-6">
+                              <form role="form">
+                                  <!-- <div class="form-group"> -->
 
-                                  <h3>1. Register Your Website</h3>
+                                    <h5>Setting up tracking for your website is as easy as 1-2-3! Just follow these simple steps:</h5>
 
-                                  <div class="form-group has-success">
-                                  <label class="control-label" for="inputSuccess">Input with success</label>
-                                  <input type="text" class="form-control" id="inputSuccess">
-                              </div>
-                              <div class="form-group has-warning">
-                                  <label class="control-label" for="inputWarning">Input with warning</label>
-                                  <input type="text" class="form-control" id="inputWarning">
-                              </div>
-                              <div class="form-group has-error">
-                                  <label class="control-label" for="inputError">Input with error</label>
-                                  <input type="text" class="form-control" id="inputError">
-                              </div>
-
-                                  <h3>2. Get Your Website Id</h3>
-
-                                  <label>Provided Website ID</label>
-                                  <label>Text Input</label>
-                                  <input class="form-control">
-                                  <p class="help-block">Example block-level help text here.</p>
-
-                                  <h3>3. Add Tracking File</h3>
+                                    <h3>1. Register Your Website</h3>
 
                                     <div class="col-lg-4">
-                                      <div class="panel panel-default">
-                                          <div class="panel-heading">
-                                              Code
+                                      Please provide the url of the website you want to track by typing the part of your website address that comes after "http://" or "https://". Remember, if your website has different pages, only include the basic url without any redirects.
+                                      <br/>
+                                      <br/>
+
+                                      <label>Website</label>
+                                      <div class="form-group" id="site-input">
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="Enter url here" ng-model = newSite>
+                                              <span class="input-group-btn">
+                                                  <button class="btn btn-success" type="button" ng-click="checkURL()">  Submit
+                                                  </button>
+                                              </span>
+
                                           </div>
-                                          <div class="panel-body">
-                                              <p>This is an example of an inline code element within body copy. Wrap inline code within a
-                                                  <code>&lt;code&gt;...&lt;/code&gt;</code>tag.</p>
-                                              <pre>This is an example of preformatted text.</pre>
-                                          </div>
-                                          <!-- /.panel-body -->
+
+                                          <label class="control-label">{{validURL}}</label>
                                       </div>
-                                      <!-- /.panel -->
-                                  </div>
 
-                                  <h3>4. Start Tracking</h3>
+                                      Correct format:
+                                      <ul>
+                                        <li>sandpiperanalytics.herokuapp.com</li>
+                                      </ul>
+                                      Incorrect format:
+                                      <ul>
+                                        <li>sandpiperanalytics</li>
+                                        <li>http://sandpiperanalytics.herokuapp.com</li>
+                                        <li>sandpiperanalytics.herokuapp.com/</li>
+                                        <li>sandpiperanalytics.herokuapp.com/dashboard</li>
+                                      </ul>
 
-                                    <div class="panel-heading">
-                                        Default Buttons
+
+                                  <!--   <div class="form-group has-success" placeholder="Enter text">
+                                        <label class="control-label" for="inputSuccess">Input with success</label>
+                                        <input type="text" class="form-control" id="inputSuccess">
+                                      </div> -->
+                                    <!-- <div class="form-group has-warning">
+                                        <label class="control-label" for="inputWarning">Input with warning</label>
+                                        <input type="text" class="form-control" id="inputWarning">
                                     </div>
-                                    <!-- /.panel-heading -->
-                                    <div class="panel-body">
-                                        <h4>Normal Buttons</h4>
-                                        <p>
-                                            <button type="button" class="btn btn-default">Default</button>
-                                            <button type="button" class="btn btn-primary">Primary</button>
-                                            <button type="button" class="btn btn-success">Success</button>
-                                            <button type="button" class="btn btn-info">Info</button>
-                                            <button type="button" class="btn btn-warning">Warning</button>
-                                            <button type="button" class="btn btn-danger">Danger</button>
-                                            <button type="button" class="btn btn-link">Link</button>
-                                        </p>
-                                        <h4>Button Sizes</h4>
-                                        <p>
-                                            <button type="button" class="btn btn-primary btn-lg">Large button</button>
-                                            <button type="button" class="btn btn-primary">Default button</button>
-                                            <br>
-                                            <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
-                                        </p>
-                                    </div>
-                                    <!-- /.panel-body -->
-                              </div>
-                          </form>
+                                    <div class="form-group has-error">
+                                        <label class="control-label" for="inputError">Input with error</label>
+                                        <input type="text" class="form-control" id="inputError">
+                                    </div> -->
+                                      </div>
+
+                                      <h3>2. Insert code</h3>
+
+
+                                        <div class="col-lg-4">
+                                          Add the following code to the "head" section of your webpage:
+
+                                            <br/>
+                                            <br/>
+                                            <pre>{{script}}</pre>
+
+                                          Note: If your website is a single-page application, you only need to add this code to one file, usually titled "index.html". If you have a multi-page application, you'll need to include include this script in the "head" section of each page that you want to track.
+
+                                          When you're finished, your page(s) should look something like this:
+                                        <br/>
+                                          (image here)
+                                      </div>
+
+                                      <h3>3. Start Tracking</h3>
+                                        <div class="col-lg-4">
+                                          Once the above script is inserted where it needs to be, you're ready to start tracking! Click to activate, and we'll start collecting data.
+
+                                          <br/>
+                                          <br/>
+                                          <button type="button" class="btn btn-success btn-lg btn-block">Start Tracking</button>
+
+                                      </div>
+                                  <!-- </div> -->
+                              </form>
+                          </div>
                       </div>
+                      <!-- /.row (nested) -->
                   </div>
-                  <!-- /.row (nested) -->
-              </div>
-              <!-- /.panel-body -->
-          </div>
-          <!-- /.panel -->
-      </div>
-      <!-- /.col-lg-12 -->
-  <div class="row">
-          <div class="col-lg-6">
-              <div class="panel panel-default">
-
+                  <!-- /.panel-body -->
               </div>
               <!-- /.panel -->
           </div>
-      </div>
-      <!-- /.row -->
-  </div>
+          <!-- /.col-lg-12 -->
+      <div class="row">
+              <div class="col-lg-6">
+                  <div class="panel panel-default">
 
+                  </div>
+                  <!-- /.panel -->
+              </div>
+          </div>
+          <!-- /.row -->
+      </div>
+    </div>
+  </div>
 
 </div>
