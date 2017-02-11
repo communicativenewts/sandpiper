@@ -5,9 +5,11 @@ var model = require('./models.js')
 module.exports = function(app, express) {
 
 
-  // ****************************************
+// ****************************************
+// *** NEW ROUTES *************************
+// ****************************************
 
-  // NEW USER
+  // ADD NEW USER
   app.post('/api/users/', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
@@ -22,16 +24,16 @@ module.exports = function(app, express) {
       if (err) {
         console.log(err);
       } else {
-        res.status(200).send("Saved to DB.");
+        res.status(200).send("User saved to DB.");
       }
     });
   });
 
-  // GET USER
-  app.get('/api/users/:id/', function(req, res) {
+  // GET USER BY USERNAME
+  app.get('/api/users/:username/', function(req, res) {
     console.log('Finding User...');
-    var userId = req.params.id;
-    model.User.findById(userId, function(err, user) {
+    var username = req.params.username;
+    model.User.findOne({username: username}, function(err, user) {
       if (err) {
         console.log(err);
       } else {
@@ -40,7 +42,7 @@ module.exports = function(app, express) {
     });
   });
 
-  // NEW SITE
+  // ADD NEW SITE TO USER
   app.post('/api/users/:id/sites/', function(req, res) {
     console.log('Adding Site...');
     var userId = req.params.id;
@@ -67,9 +69,180 @@ module.exports = function(app, express) {
         });
       }
     });
-
   });
 
+  // GET ALL USER SITES
+  app.get('/api/users/:id/sites', function(req, res) {
+    console.log('Finding all user sites...');
+    var userId = req.params.id;
+    model.Site.find({_user: userId}, function(err, sites) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(sites);
+      }
+    });
+  });
+
+  // GET SPECIFIC SITE
+  app.get('/api/sites/:id/', function(req, res) {
+    console.log('Finding Site...');
+    var siteId = req.params.id;
+    model.Site.findById(siteId, function(err, site) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(site);
+      }
+    });
+  });
+
+  // ADD NEW SITE CLICK
+  app.post('/api/sites/:id/clicks/', function(req, res) {
+    console.log('Adding Click...');
+    var siteId = req.params.id;
+
+    var url = req.body.url;
+    var date = Date();
+
+    model.linkClickModel.findOne({url: url, _site: siteId}, function(err, click) {
+      // if click already in database, add to entry
+      if (click) {
+        console.log('Matching click:', click);
+        click.count ++;
+        click.date.push(date);
+        click.save();
+        res.status(200).send('Click updated.');
+      } else {
+        // otherwise make new entry
+        console.log('No matching click found.');
+        var newClick = new model.linkClickModel();
+        newClick._site = siteId;
+        newClick.url = url;
+        newClick.count = 1;
+        newClick.date = [date];
+
+        newClick.save(function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log('Click saved to DB.');
+            model.Site.findById(siteId, function(err, site) {
+              site.clicks.push(newClick);
+              site.save(function(err) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.status(200).send("Click saved to site.");
+                }
+              });
+            });
+          }
+        });
+      }
+    });
+  });
+
+  // GET ALL CLICKS FOR SITE
+  app.get('/api/sites/:id/clicks/', function(req, res) {
+    console.log('Finding site clicks...');
+    var siteId = req.params.id;
+    model.linkClickModel.find({_site: siteId}, function(err, clicks) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(clicks);
+      }
+    });
+  });
+
+  // GET SPECIFIC SITE CLICK
+  app.get('/api/clicks/:id/', function(req, res) {
+    console.log('Finding Click...');
+    var clickId = req.params.id;
+    model.linkClickModel.findById(clickId, function(err, click) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(click);
+      }
+    });
+  });
+
+  // ADD NEW SITE VIEW
+  app.post('/api/sites/:id/views/', function(req, res) {
+    console.log('Adding View...');
+    var siteId = req.params.id;
+
+    var title = req.body.title;
+    var date = Date();
+
+    model.pageViewModel.findOne({title: title, _site: siteId}, function(err, view) {
+      // if view already in database, add to entry
+      if (view) {
+        console.log('Matching view:', view);
+        view.count ++;
+        view.date.push(date);
+        view.save();
+        res.status(200).send('view updated.');
+      } else {
+        // otherwise make new entry
+        console.log('No matching view found.');
+        var newView = new model.pageViewModel();
+        newView._site = siteId;
+        newView.title = title;
+        newView.count = 1;
+        newView.date = [date];
+
+        newView.save(function (err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log('View saved to DB.');
+            model.Site.findById(siteId, function(err, site) {
+              site.views.push(newView);
+              site.save(function(err) {
+                if (err) {
+                  console.log(err);
+                } else {
+                  res.status(200).send("View saved to site.");
+                }
+              });
+            });
+          }
+        });
+      }
+    });
+  });
+
+  // GET ALL VIEWS FOR SITE
+  app.get('/api/sites/:id/views/', function(req, res) {
+    console.log('Finding site views...');
+    var siteId = req.params.id;
+    model.pageViewModel.find({_site: siteId}, function(err, views) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(views);
+      }
+    });
+  });
+
+  // GET SPECIFIC SITE VIEW
+  app.get('/api/views/:id/', function(req, res) {
+    console.log('Finding View...');
+    var viewId = req.params.id;
+    model.pageViewModel.findById(viewId, function(err, view) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(view);
+      }
+    });
+  });
+
+// ****************************************
+// ****************************************
 // ****************************************
 
 
