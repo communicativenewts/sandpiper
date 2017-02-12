@@ -20,16 +20,25 @@
                               <div class="col-lg-12">
                                 <h3>1. Register Your Website</h3>
                                 <div class="col-lg-4">
-                                  Please provide the url of the website you want to track by typing the part of your website address that comes after "http://" or "https://". Remember, if your website has different pages, only include the basic url without any redirects.<br/><br/>
+                                  Register the site you wish to track by providing the website's name and url in the boxes below. When designating url, please type the part of your website address that comes after "http://" or "https://". Remember, if your website has different pages, only include the basic url without any redirects.
+                                  <br/>
+                                  <br/>
+
+                                  <label>Title</label>
+                                  <div class="form-group">
+                                    <input class="form-control" placeholder="Enter website title here" ng-model = newSite.title>
+                                  </div>
+                                  <label class="control-label">{{validTitle}}</label>
                                   <label>Website</label>
                                   <div class="input-group" id="site-input">
-                                      <input type="text" class="form-control" placeholder="Enter url here" ng-model = newSite>
+                                      <input type="text" class="form-control" placeholder="Enter website url here" ng-model = newSite.url>
                                       <span class="input-group-btn">
                                         <button class="btn btn-success" type="button" ng-click="checkURL()">  Submit
                                         </button>
                                       </span>
                                   </div>
                                   <label class="control-label">{{validURL}}</label>
+                                  <br/>
                                   Correct format:
                                   <ul>
                                     <li>sandpiperanalytics.herokuapp.com</li>
