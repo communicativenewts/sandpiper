@@ -1,11 +1,17 @@
 angular.module('app.signup', [])
-  .controller('signupController', function($scope, Users) {
+  .controller('signupController', function($scope, $window, $location, Auth, Users) {
 
-    $scope.createUser = function() {
-      Users.createUser({
-        email: $scope.email,
-        username: $scope.username,
-        password: $scope.password
-      });
+    $scope.user = {};
+
+    $scope.signup = function() {
+      Auth.createUser($scope.user)
+        .then(function(token) {
+          $window.localStorage.setItem('sandpiper.analytics', token);
+          $location.path('/onboarding');
+        })
+        .catch(function(err) {
+          console.log('Signup error:', err);
+        });
     };
+
   });
