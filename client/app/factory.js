@@ -99,12 +99,23 @@ angular.module('sharkanalytics.factory', [])
 
 /* USERS FACTORY */
 .factory('Users', function ($http, $location){
+
   // CACHE USER ID
   var userId = null;
+  var userSite = null;
 
   // RETURN USER ID
   var getUserId = function() {
     return userId;
+  };
+
+  // SET USER SITE
+  var setUserSite = function(site) {
+    userSite = site;
+  }
+  // RETURN USER SITE
+  var getUserSite = function() {
+    return userSite;
   };
 
   // RETRIEVE ALL USER SITES
@@ -118,10 +129,11 @@ angular.module('sharkanalytics.factory', [])
   };
 
   // REGISTER NEW SITE TO USER
-  var addNewSite = function(userId) {
+  var addNewSite = function(userId, data) {
     return $http({
       method: 'POST',
-      url: '/api/users/' + userId + '/sites/'
+      url: '/api/users/' + userId + '/sites/',
+      data: data
     }).then(function(response) {
       return response.data;
     })
@@ -168,9 +180,11 @@ angular.module('sharkanalytics.factory', [])
   };
 
   return {
+    getUserId: getUserId,
+    setUserSite: setUserSite,
+    getUserSite: getUserSite,
     loginUser: loginUser,
     createUser: createUser,
-    getUserId: getUserId,
     getAllSites: getAllSites,
     addNewSite: addNewSite
   }
