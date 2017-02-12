@@ -2,23 +2,22 @@ angular.module("sharkanalytics.pageView", [])
 
 .controller("pageViewController", function($scope, Pages) {
 
-
 $scope.pageProperties = {}; // initialization block
-$scope.showAll = true;
-$scope.hideAll = false;
+// $scope.showAll = true;
+// $scope.hideAll = false;
 
-$scope.setShowAll = function(boolean) { // boolean function block for interacting with HTML: showing and hiding divs.
-  $scope.showAll = boolean;
-  $scope.hideAll = !boolean;
-}
+// $scope.setShowAll = function(boolean) { // boolean function block for interacting with HTML: showing and hiding divs.
+//   $scope.showAll = boolean;
+//   $scope.hideAll = !boolean;
+// }
 
-$scope.showDates = true;
-$scope.hideDates = false;
+// $scope.showDates = true;
+// $scope.hideDates = false;
 
-$scope.setHideDates = function(boolean) {
-    $scope.hideDates = boolean;
-    $scope.showDates = !boolean;
-}
+// $scope.setHideDates = function(boolean) {
+//     $scope.hideDates = boolean;
+//     $scope.showDates = !boolean;
+// }
 
 $scope.getPage = function(page) {
     Pages.getPage(page).then(function (res, err) { // get our page...

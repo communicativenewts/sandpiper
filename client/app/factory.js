@@ -106,6 +106,7 @@ angular.module('sharkanalytics.factory', [])
 
   // RETURN USER ID
   var getUserId = function() {
+    console.log('User Id:', userId);
     return userId;
   };
 

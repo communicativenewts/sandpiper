@@ -1,31 +1,8 @@
 angular.module('app.dashboard', [])
   .controller('dashboardController', function($scope, Users) {
-
     $scope.user = Users.getUserId();
 
-    $scope.sites = [
-      {
-        id: 1,
-        url: 'www.amazon.com',
-        title: 'My Amazon Marketplace',
-        status: 'active',
-        date: 'January 4, 2017'
-      },
-      {
-        id: 2,
-        url: 'www.blog.com',
-        title: 'My Blog',
-        status: 'suspended',
-        date: 'May 23, 2016'
-      },
-      {
-        id: 3,
-        url: 'www.business.com',
-        title: 'My Business\'s Website',
-        status: 'active',
-        date: 'September 6, 2016'
-      }
-    ];
+    $scope.sites = [];
 
     $scope.selected = 'none';
 
@@ -46,5 +23,14 @@ angular.module('app.dashboard', [])
             responsive: true
         });
     });
+
+    var initializeSites = function() {
+      Users.getAllSites(Users.getUserId())
+        .then(function(sites) {
+          $scope.sites = sites;
+        });
+    };
+
+    initializeSites();
 
   });
