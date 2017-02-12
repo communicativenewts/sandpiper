@@ -1,5 +1,3 @@
-console.log('we are inside the login.js file')
-
 angular.module('app.login', [])
   .controller('loginController', function($scope, Users) {
 
