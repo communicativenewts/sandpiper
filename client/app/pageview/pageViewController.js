@@ -19,11 +19,19 @@ $scope.pageProperties = {}; // initialization block
 //     $scope.showDates = !boolean;
 // }
 
-var getView = function(siteId) {
-  console.log('Getting View!');
-  // Pages.getView(siteId).then(function(res, err) {
-  //   //
-  // })
+var getView = function(pageView) {
+  Pages.getView(pageView._id).then(function(res, err) {
+    if (err) {
+      console.log('Error: getView in pageViewController.', err);
+    } else {
+      var ourData = res;
+      $scope.pageProperties[pageView.title] = {}; // local initialization block
+      $scope.pageProperties[pageView.title].count = 0;
+      $scope.pageProperties[pageView.title].title = ourData.title;
+      $scope.pageProperties[pageView.title].count = ourData.count;
+      $scope.pageProperties[pageView.title].date = ourData.date;
+    }
+  });
 };
 
 // $scope.getPage = function(page) {
@@ -54,10 +62,10 @@ var getAllViews = function() {
         $scope.ourPages = res;
         res.forEach(function(element) {
           $scope.views += element.count;
-          getView(element._id);
-        })
+          getView(element);
+        });
       }
-    })
+    });
 };
 
 getAllViews();

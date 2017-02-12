@@ -39,12 +39,22 @@ angular.module('sharkanalytics.factory', [])
     });
   };
 
+  var getClick = function(clickId) {
+    return $http({
+      method: 'GET',
+      url: '/api/clicks/' + clickId
+    }).then(function (response) {
+      return response.data;
+    });
+  };
+
 // *************************************
 
   return {
     getAllLinks: getAllLinks,
     getLink: getLink,
-    getSiteClicks: getSiteClicks
+    getSiteClicks: getSiteClicks,
+    getClick: getClick
   };
 })
 
@@ -84,7 +94,6 @@ angular.module('sharkanalytics.factory', [])
       method: 'GET',
       url: '/api/sites/' + siteId + '/views/'
     }).then(function (response) {
-      console.log('getSiteViews', response.data);
       return response.data;
     });
   };
@@ -94,7 +103,6 @@ angular.module('sharkanalytics.factory', [])
       method: 'GET',
       url: '/api/views/' + viewId
     }).then(function (response) {
-      console.log('getView', response.data);
       return response.data;
     });
   };
@@ -104,7 +112,8 @@ angular.module('sharkanalytics.factory', [])
   return {
     getAllPages: getAllPages,
     getPage: getPage,
-    getSiteViews: getSiteViews
+    getSiteViews: getSiteViews,
+    getView: getView
   };
 })
 
