@@ -39,12 +39,22 @@ angular.module('sharkanalytics.factory', [])
     });
   };
 
+  var getClick = function(clickId) {
+    return $http({
+      method: 'GET',
+      url: '/api/clicks/' + clickId
+    }).then(function (response) {
+      return response.data;
+    });
+  };
+
 // *************************************
 
   return {
     getAllLinks: getAllLinks,
     getLink: getLink,
-    getSiteClicks: getSiteClicks
+    getSiteClicks: getSiteClicks,
+    getClick: getClick
   };
 })
 
