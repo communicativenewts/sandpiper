@@ -97,27 +97,36 @@ angular.module('sharkanalytics.factory', [])
     });
   };
 
+  return {
+    getUserId: getUserId,
+    setUserSite: setUserSite,
+    getUserSite: getUserSite,
+    getAllSites: getAllSites,
+    addNewSite: addNewSite
+  }
+})
+.factory('Auth', function($http, $location, $window) {
   // LOGIN USER
-  var loginUser = function(data) {
+  var loginUser = function(user) {
     return $http({
       method: 'POST',
       url: '/api/login/',
+<<<<<<< HEAD
       data: data
+=======
+      data: user
+>>>>>>> Set up Auth factory
     }).then(function(resp) {
-      if (resp.data.username) {
-        userId = resp.data._id;
-        $location.url('/dashboard');
-      } else {
-        $location.url('/login');
-      }
+      return resp.data.token;
     });
   };
 
   // CREATE NEW USER
-  var createUser = function (data) {
+  var createUser = function(user) {
     return $http({
       method: 'POST',
       url: '/api/signup/',
+<<<<<<< HEAD
       data: data
     }).then(function(resp) {
       if (resp.data.username) {
@@ -127,16 +136,35 @@ angular.module('sharkanalytics.factory', [])
         $location.url('/signup');
       }
     });
+=======
+      data: user
+    }).then(function(resp) {
+      return resp.data.token;
+    });
+  };
+
+  // CHECK IF USER IS LOGGED IN
+  var isAuth = function() {
+    return !!$window.localStorage.getItem('sandpiper.analytics');
+  };
+
+  // SIGNOUT USER
+  var signout = function() {
+    $window.localStorage.removeItem('sandpiper.analytics');
+    $location.path('/login');
+>>>>>>> Set up Auth factory
   };
 
   return {
-    getUserId: getUserId,
-    setUserSite: setUserSite,
-    getUserSite: getUserSite,
     loginUser: loginUser,
     createUser: createUser,
+<<<<<<< HEAD
     getAllSites: getAllSites,
     addNewSite: addNewSite
+=======
+    isAuth: isAuth,
+    signout: signout
+>>>>>>> Set up Auth factory
   };
 
 });
