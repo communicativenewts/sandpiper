@@ -104,7 +104,8 @@ angular.module('sharkanalytics.factory', [])
   return {
     getAllPages: getAllPages,
     getPage: getPage,
-    getSiteViews: getSiteViews
+    getSiteViews: getSiteViews,
+    getView: getView
   };
 })
 
