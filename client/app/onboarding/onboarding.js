@@ -1,8 +1,14 @@
 angular.module('app.onboarding', [])
-  .controller('onboardingController', function($scope) {
+  .controller('onboardingController', function($scope, Users) {
 
-    $scope.newSite;
+    $scope.userId = Users.getUserId();
+    $scope.newSite = {
+      url: null,
+      title: ''
+    };
+
     $scope.validURL = '';
+    $scope.validTitle = '';
 
     $scope.checkURL = function() {
       console.log('checking Url');
@@ -10,19 +16,26 @@ angular.module('app.onboarding', [])
       if (regEx.test($scope.newSite)) {
         console.log('valid site');
         $scope.validURL = 'Valid Site';
-        $('#site-input').addClass("has-success");
+        $('#site-input').removeClass('has-error');
+        $('#site-input').addClass('has-success');
       } else {
         console.log('invalid site');
         $scope.validURL = 'Invalid Site';
-        $('#site-input').addClass("has-error");
+        $('#site-input').removeClass('has-success');
+        $('#site-input').addClass('has-error');
       }
     };
 
     $scope.script = 'Please complete Step 1 to access your custom script.';
 
     $scope.createScript = function() {
-      //submit website url to server
-      //receive id back from server
-      $scope.script = '<script>window.sandpiperid = \"' + providedId + '\"</script>\n<script src = "scriptsource.com"></script>';
+      if ($scope.newSite.title.length === 0) {
+        $scope.validTitle = 'Please give this website a title';
+        return;
+      }
+      Users.addNewSite($scope.userId, $scope.newSite)
+      .then(function(siteId) {
+        $scope.script = '<script>window.sandpiperid = \"' + siteId + '\"</script>\n<script src = "scriptsource.com"></script>';
+      });
     };
   });
