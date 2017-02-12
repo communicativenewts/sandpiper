@@ -20,7 +20,6 @@ $scope.pageProperties = {}; // initialization block
 // }
 
 var getView = function(pageView) {
-  console.log('Getting View!');
   Pages.getView(pageView._id).then(function(res, err) {
     if (err) {
       console.log('Error: getView in pageViewController.', err);

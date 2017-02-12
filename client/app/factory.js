@@ -84,7 +84,6 @@ angular.module('sharkanalytics.factory', [])
       method: 'GET',
       url: '/api/sites/' + siteId + '/views/'
     }).then(function (response) {
-      console.log('getSiteViews', response.data);
       return response.data;
     });
   };
@@ -94,7 +93,6 @@ angular.module('sharkanalytics.factory', [])
       method: 'GET',
       url: '/api/views/' + viewId
     }).then(function (response) {
-      console.log('getView', response.data);
       return response.data;
     });
   };
