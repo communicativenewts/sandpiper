@@ -1,14 +1,14 @@
 angular.module('sharkanalyticss.linkClickPlotly', [])
 
-.controller('linkClickVisualsController', function ($scope, Links) { // our bar graph controller
+.controller('linkClickVisualsController', function ($scope, Links, Users) { // our bar graph controller
 
   var allUrls = []; // initialization block
   var allCounts = [];
 
   $scope.refresh = function() { // When refresh is called:
-    Links.getAllLinks() // Get all the links
+    Links.getSiteClicks(Users.getUserSite()) // Get all the links
       .then(function(response) {
-        response.data.forEach(function(item) { // For all items in response.data...
+        response.forEach(function(item) { // For all items in response.data...
           allUrls.push(item.url); // Push the url and the count properties onto their relevant arrays.
           allCounts.push(item.count);
         })
@@ -20,7 +20,7 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
   $scope.refresh();
 })
 
-.controller("linkClickPieController", function ($scope, Links) { // our pie graph controller
+.controller("linkClickPieController", function ($scope, Links, Users) { // our pie graph controller
 
   var allUrls = []; // initialization block
   var allCounts = [];
@@ -28,10 +28,10 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
   var totalCount = 0;
 
   $scope.refresh = function() { // When refresh is called:
-    Links.getAllLinks() // Get all the links
+    Links.getSiteClicks(Users.getUserSite()) // Get all the links
       .then(function(response) {
-        response.data.forEach(function(item) { // For all the items in response.data...
-          totalCount+=item.count; // Increment the total amount of clicks by the amount of times the current url has been clicked
+        response.forEach(function(item) { // For all the items in response.data...
+          totalCount += item.count; // Increment the total amount of clicks by the amount of times the current url has been clicked
           allUrls.push(item.url); // Push the url and count properties into their relevant arrays.
           allCounts.push(item.count);
         })
@@ -49,7 +49,7 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
 
 })
 
-.controller("linkClickDayController", function ($scope, Links) { // our day graph controller
+.controller("linkClickDayController", function ($scope, Links, Users) { // our day graph controller
 
   var allUrls = []; // initialization block
   var allDates = [];
@@ -57,9 +57,9 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
   var dates = {};
 
   $scope.refresh = function() { // When refresh is called:
-    Links.getAllLinks() // Get all the links.
+    Links.getSiteClicks(Users.getUserSite()) // Get all the links.
       .then(function(response) {
-        response.data.forEach(function(item) { // For each element within the data...
+        response.forEach(function(item) { // For each element within the data...
           item.date.forEach(function(element) { // For each date within the element...
             allDates.push(element); // Push date onto allDates
           })
