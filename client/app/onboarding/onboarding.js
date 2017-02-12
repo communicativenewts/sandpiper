@@ -9,6 +9,7 @@ angular.module('app.onboarding', [])
 
     $scope.validURL = '';
     $scope.validTitle = '';
+    $scope.siteId = null;
 
     $scope.checkURL = function() {
       console.log('checking Url');
@@ -35,7 +36,14 @@ angular.module('app.onboarding', [])
       }
       Users.addNewSite($scope.userId, $scope.newSite)
       .then(function(siteId) {
+        $scope.siteId = siteId;
         $scope.script = '<script>window.sandpiperid = \"' + siteId + '\"</script>\n<script src = "scriptsource.com"></script>';
       });
     };
+
+    $scope.startTracking = function() {
+      Users.setUserSite($scope.siteId);
+      $location.path('/dashboard');
+    }
+
   });
