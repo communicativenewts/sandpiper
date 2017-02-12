@@ -84,6 +84,17 @@ angular.module('sharkanalytics.factory', [])
       method: 'GET',
       url: '/api/sites/' + siteId + '/views/'
     }).then(function (response) {
+      console.log('getSiteViews', response.data);
+      return response.data;
+    });
+  };
+
+  var getView = function(viewId) {
+    return $http({
+      method: 'GET',
+      url: '/api/views/' + viewId
+    }).then(function (response) {
+      console.log('getView', response.data);
       return response.data;
     });
   };
@@ -113,10 +124,12 @@ angular.module('sharkanalytics.factory', [])
   // SET USER SITE
   var setUserSite = function(site) {
     userSite = site;
+    console.log('User Site:', userSite);
   }
+
   // RETURN USER SITE
   var getUserSite = function() {
-    return userSite;
+    return userSite._id;
   };
 
   // RETRIEVE ALL USER SITES

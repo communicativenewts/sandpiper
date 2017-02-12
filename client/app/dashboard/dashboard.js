@@ -1,22 +1,14 @@
 angular.module('app.dashboard', [])
-  .controller('dashboardController', function($scope, Users) {
-    $scope.user = Users.getUserId();
-
+  .controller('dashboardController', function($scope, $location, Users) {
     $scope.sites = [];
 
     $scope.selected = 'none';
 
     $scope.stats = function(site) {
       $scope.selected = site.id;
-      Users.setUserSite = site;
-      $location.path('/stats');
+      Users.setUserSite(site);
+      $location.path('/overallStats');
     };
-
-    $scope.populateSites = function() {
-          console.log($scope.user);
-    }
-
-    $scope.populateSites();
 
     angular.element(document).ready(function () {
         $('#dashboard-table').DataTable({
@@ -32,5 +24,4 @@ angular.module('app.dashboard', [])
     };
 
     initializeSites();
-
   });
