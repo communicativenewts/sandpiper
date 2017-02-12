@@ -1,48 +1,43 @@
-<div id="wrapper">
-   <div id="page-wrapper">
-
-      <div class="row">
-        <div class="col-lg-12">
-          <h1 class="page-header">Dashboard</h1>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Tracked Sites
-                </div>
-
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dashboard-table">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Status</th>
-                                <th>URL</th>
-                                <th>Tracked Since</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="site in sites">
-                              <td ng-click="stats(site)">{{site.title}}</td>
-                              <td>{{site.status}}</td>
-                              <td>{{site.url}}</td>
-                              <td>{{site.date}}</td>
-                            <!--<td><button ng-click="stats(site)">Stats</button></td> -->
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- /.table-responsive -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-            <div>{{selected}}</div>
-      </div>
-  <!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Dashboard</h1>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              Tracked Sites
+          </div>
+
+          <div class="panel-body">
+              <table width="100%" class="table table-striped table-bordered table-hover" id="dashboard-table">
+                  <thead>
+                      <tr>
+                          <th>Title</th>
+                          <th>Status</th>
+                          <th>URL</th>
+                          <th>Tracked Since</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr ng-repeat="site in sites">
+                        <td ng-click="stats(site)">{{site.title}}</td>
+                        <td>{{site.status}}</td>
+                        <td>{{site.url}}</td>
+                        <td>{{site.date}}</td>
+                      <!--<td><button ng-click="stats(site)">Stats</button></td> -->
+                      </tr>
+                  </tbody>
+              </table>
+              <!-- /.table-responsive -->
+          </div>
+          <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+      <div>{{selected}}</div>
+</div>
+
