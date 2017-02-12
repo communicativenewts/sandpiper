@@ -1,5 +1,7 @@
 angular.module('app.dashboard', [])
-  .controller('dashboardController', function($scope) {
+  .controller('dashboardController', function($scope, Users) {
+
+    $scope.user = Users.getUserId();
 
     $scope.sites = [
       {
@@ -28,10 +30,16 @@ angular.module('app.dashboard', [])
     $scope.selected = 'none';
 
     $scope.stats = function(site) {
-      //save selected site to factory
       $scope.selected = site.id;
+      Users.setUserSite = site;
       $location.path('/stats');
     };
+
+    $scope.populateSites = function() {
+          console.log($scope.user);
+    }
+
+    $scope.populateSites();
 
     angular.element(document).ready(function () {
         $('#dashboard-table').DataTable({
