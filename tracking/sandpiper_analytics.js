@@ -1,11 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log('DOCUMENT READY TO PARSE!', 'DATA READY TO TRACK AND SEND!');
-
-// ************************************************
-// *** USER UPDATES ID WHEN INJECTING INTO SITE ***
-// ************************************************
-
-  var siteId = '589e4b9c0e7c48029bbb0eaa'; // BUYIFY SITE ID
+  var siteId = window.sandpiperid;
 
 // ************************************************
 
@@ -18,11 +12,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   //set Sandpiper Session
   sessionStorage.setItem("sandpiperSession", true);
 
-// *************************************************
-// *** NEW ENDPOINTS / USE SITE ID FROM DATABASE ***
-// *************************************************
-
-  var api = 'http://localhost:8080/api/sites/' + siteId;
+  var api = 'https://sandpiperanalytics.herokuapp.com/api/sites/' + siteId;
   var clickEndpoint = api + '/clicks';
   var viewEndpoint = api + '/views';
 
