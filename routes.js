@@ -1,5 +1,9 @@
 //require schemas from Models folder
+<<<<<<< HEAD
 var model = require('./models.js')
+=======
+var model = require('./models.js');
+>>>>>>> Add json web token dependency and set up framework
 
 //export routes to app file
 module.exports = function(app, express) {
@@ -45,7 +49,12 @@ module.exports = function(app, express) {
           res.redirect('/');
         } else {
           if (user.password === password) {
+<<<<<<< HEAD
             res.status(200).send(user);
+=======
+            // CREATE SESSION
+            res.redirect('/dashboard');
+>>>>>>> Add json web token dependency and set up framework
           } else {
             // INCORRECT PASSWORD
             res.redirect('/');
@@ -251,4 +260,12 @@ module.exports = function(app, express) {
     });
   });
 
+<<<<<<< HEAD
 };
+=======
+};
+
+
+
+
+>>>>>>> Add json web token dependency and set up framework

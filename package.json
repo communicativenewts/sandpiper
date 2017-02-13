@@ -26,7 +26,12 @@
     "body-parser": "^1.16.0",
     "cors": "^2.8.1",
     "express": "^4.14.0",
+<<<<<<< HEAD
     "mongoose": "^4.7.8"
+=======
+    "mongoose": "^4.7.8",
+    "jwt-simple": "^0.5.0"
+>>>>>>> Add json web token dependency and set up framework
   },
     "devDependencies": {
     "browser-sync": "^2.13.0",
