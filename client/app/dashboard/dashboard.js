@@ -17,7 +17,7 @@ angular.module('app.dashboard', [])
     });
 
     var initializeSites = function() {
-      Users.getAllSites(Users.getUserId())
+      Users.getAllSites(window.sandpiperId)
         .then(function(sites) {
           $scope.sites = sites;
           $scope.sites.forEach(function(site) {

@@ -4,6 +4,7 @@ angular.module('app.login', [])
     $scope.user = {};
 
     $scope.signin = function() {
+      console.log('Logging In:', $scope.user);
       Auth.loginUser($scope.user)
         .then(function(token) {
           $window.localStorage.setItem('sandpiper.analytics', token);
