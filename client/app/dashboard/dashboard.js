@@ -20,6 +20,9 @@ angular.module('app.dashboard', [])
       Users.getAllSites(Users.getUserId())
         .then(function(sites) {
           $scope.sites = sites;
+          $scope.sites.forEach(function(site) {
+            site.date = site.date.slice(0, -15);
+          })
         });
     };
 
