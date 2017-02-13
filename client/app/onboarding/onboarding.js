@@ -53,7 +53,7 @@ angular.module('app.onboarding', [])
       .then(function(siteId) {
         console.log('new site id is', siteId)
         $scope.siteId = siteId._id;
-        $scope.script = '<script>window.sandpiperid=\"' + $scope.siteId + '\"</script>\n<script src="scriptsource.com"></script>';
+        $scope.script = '<script>window.sandpiperid=\"' + $scope.siteId + '\"</script>\n<script src="https://cdn.rawgit.com/communicativenewts/sandpiper/aba4852667e4011ed6c24f850633b41ec20bc664/tracking/sandpiper_analytics.js"></script>';
       });
     };
 
