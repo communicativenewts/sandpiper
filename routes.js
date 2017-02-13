@@ -3,7 +3,11 @@
 var model = require('./models.js')
 =======
 var model = require('./models.js');
+<<<<<<< HEAD
 >>>>>>> Add json web token dependency and set up framework
+=======
+var jwt = require('jwt-simple');
+>>>>>>> Add to jwt functionality
 
 //export routes to app file
 module.exports = function(app, express) {
@@ -25,7 +29,14 @@ module.exports = function(app, express) {
             if (err) {
               console.log(err);
             } else {
+<<<<<<< HEAD
               res.status(200).send(newUser);
+=======
+              console.log('New user created.');
+              var token = jwt.encode(user, 'secret');
+              res.json({token: token});
+              // res.status(200).send(newUser);
+>>>>>>> Add to jwt functionality
             }
           });
         } else {
@@ -50,6 +61,7 @@ module.exports = function(app, express) {
         } else {
           if (user.password === password) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             res.status(200).send(user);
 =======
             // CREATE SESSION
@@ -58,10 +70,35 @@ module.exports = function(app, express) {
           } else {
             // INCORRECT PASSWORD
             res.redirect('/');
+=======
+            window.sandpiperId = user._id;
+            var token = jwt.encode(user, 'secret');
+            res.json({token: token});
+          } else {
+            console.log('Incorrect Password.');
+>>>>>>> Add to jwt functionality
           }
         }
       }
     });
+  });
+
+  // CHECK IF USER IS LOGGED IN
+  app.get('/api/signedin', function(req, res) {
+    var token = req.headers['x-access-token'];
+    if (!token) {
+      console.log('No Token.');
+    } else {
+      var user = jwt.decode(token, 'secret');
+      model.User.findOne({username: user.username})
+        .then(function(foundUser) {
+          if (foundUser) {
+            res.send(200);
+          } else {
+            res.send(401);
+          }
+      });
+    }
   });
 
   // GET USER BY USERNAME
