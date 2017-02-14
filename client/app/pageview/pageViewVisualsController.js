@@ -44,9 +44,7 @@ angular.module('sharkanalytics.pageViewPlotly', [])
         $scope.data = [$scope.data];
       });
   };
-
   $scope.refresh();
-
 })
 
 .controller('pageViewDayController', function($scope, Pages, Users) {
@@ -81,11 +79,8 @@ angular.module('sharkanalytics.pageViewPlotly', [])
   });
 
   };
-
   $scope.refresh();
-
 })
-
 
 .directive('linePlot', function () {
   // Create a page function
@@ -96,16 +91,13 @@ angular.module('sharkanalytics.pageViewPlotly', [])
           height: 250,
           margin: { 't': 40, 'b':20, 'l':40, 'r':0 },
         };
-
       Plotly.newPlot(element[0], plots, layout);
     }, true);
   }
-
   // Return this function for linking ...
   return {
       page: pageFunc
   };
-
 })
 
 .directive('overallPlot', function () {
@@ -117,14 +109,11 @@ angular.module('sharkanalytics.pageViewPlotly', [])
           height: 250,
           margin: { 't': 40, 'b':20, 'l':40, 'r':0 },
         };
-
       Plotly.newPlot(element[0], plots, layout);
     }, true);
   }
-
   // Return this function for linking ...
   return {
       page: pageFunc
   };
-
-})
+});

@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   var siteId = window.sandpiperid;
 
-// ************************************************
-
-  //sends events by type to endpoint
   var sandpiperMetrics = {}
   var event;
   var request;
@@ -15,8 +12,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var api = 'https://sandpiperanalytics.herokuapp.com/api/sites/' + siteId;
   var clickEndpoint = api + '/clicks';
   var viewEndpoint = api + '/views';
-
-// *************************************************
 
   //Generic Tracking Mechanism
   sandpiperMetrics.report = function(eventData, eventType, endpoint, metaData) {
@@ -40,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   };
 
-  //hash change events (VIEWS)
+  //hash change events (views)
   if ("onhashchange" in window) {
     function currentHash() {
       console.log('location hash', location.hash);
