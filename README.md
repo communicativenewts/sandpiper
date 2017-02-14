@@ -1,56 +1,47 @@
-#Shark Analytics
-This analytics tool can be installed on any website and allows site owners to track visits to their page, as well as clicks on individual links. It uses Plotly to display site visits and link clicks visually, and a MongoDB database to store information.
+# Sandpiper #
 
-##Team
+>The Event-Driven Behavioral Analytics Platform
 
-Product Owner: Tony Hyde
-Scrum Master: Erica Stephan
-Development Team Members: Ian George, Jeff Bentler
+## Team
 
-##Table of Contents
+  - __Product Owner__: Bruce Graham
+  - __Scrum Master__: Beth Akerman
+  - __Development Team Members__: Alex Autem, Jeff Bentley, Ian George, Tony Hyde, Erica Stephan
 
-###Usage
-###Requirements
-###Development
-###Installing Dependencies
-###Tasks
-###Team
-###Contributing
+## Table of Contents
 
- -
+1. [Usage](#Usage)
+1. [Requirements](#requirements)
+1. [Development](#development)
+    1. [Installing Dependencies](#installing-dependencies)
+    1. [Tasks](#tasks)
+1. [Team](#team)
+1. [Contributing](#contributing)
 
-##Usage
+## Usage
 
-This app relies on a separate add-on script that can be implemented on a third party's website to track clicks on that site. This script is in the Buyify repository <a href="https://github.com/sharkanalytics/buyify/blob/master/README.md">here</a>. The filename for the tracking library that is central the shark analytics application is named wokeSharks.js
+> This analytics tool can be installed on any website and allows site owners to track site visits and button/link clicks. It uses Plot.ly to display site visits and link clicks visually. It's also attached to a MongoDB database.
 
-##Requirements
+## Requirements
 
-Node 0.10.x
-Plot.ly
-D3
-Mongoose
+- Node.js
+- Express 4.14.0
+- Mongoose ^4.7.8
 
-##Development
+## Development
 
-##Installing Dependencies
+### Installing Dependencies
 
 From within the root directory:
 
-sudo npm install -g bower
+```sh
 npm install
-bower install
-npm install express
-npm install mongoose
+```
 
-##Roadmap
+### Roadmap
 
-View the project roadmap here:
-https://waffle.io/sharkanalytics/sharkanalytics
+View the project roadmap [here](https://waffle.io/communicativetech/sandpiper)
 
-##Contributing
+## Contributing
 
-Features that remain to be implemented include:
-
-- graphs by date of individual links, to see which days were most popular for clicking a given link
-- allow hiding of stats and collapsing of dates individually by link instead of all at once
-- build out additional endpoints on the Buyify demo site
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
