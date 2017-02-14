@@ -47,10 +47,6 @@ angular.module('sharkanalytics',
     })
     .otherwise({
       redirectTo: '/login'
-<<<<<<< HEAD
-    })
-  });
-=======
     });
 
   $httpProvider.interceptors.push('AttachTokens');
@@ -75,4 +71,3 @@ angular.module('sharkanalytics',
     }
   });
 });
->>>>>>> Add authentication parameter to routes requiring login

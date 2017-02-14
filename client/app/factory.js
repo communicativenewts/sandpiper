@@ -112,11 +112,7 @@ angular.module('sharkanalytics.factory', [])
     return $http({
       method: 'POST',
       url: '/api/login/',
-<<<<<<< HEAD
-      data: data
-=======
       data: user
->>>>>>> Set up Auth factory
     }).then(function(resp) {
       return resp.data.token;
     });
@@ -127,17 +123,6 @@ angular.module('sharkanalytics.factory', [])
     return $http({
       method: 'POST',
       url: '/api/signup/',
-<<<<<<< HEAD
-      data: data
-    }).then(function(resp) {
-      if (resp.data.username) {
-        userId = resp.data._id;
-        $location.url('/onboarding');
-      } else {
-        $location.url('/signup');
-      }
-    });
-=======
       data: user
     }).then(function(resp) {
       return resp.data.token;
@@ -162,24 +147,16 @@ angular.module('sharkanalytics.factory', [])
   var signout = function() {
     $window.localStorage.removeItem('sandpiper.analytics');
     $location.path('/login');
->>>>>>> Set up Auth factory
   };
 
   return {
     loginUser: loginUser,
     createUser: createUser,
-<<<<<<< HEAD
     getAllSites: getAllSites,
     addNewSite: addNewSite
-=======
     isAuth: isAuth,
-<<<<<<< HEAD
-    signout: signout
->>>>>>> Set up Auth factory
-=======
     signout: signout,
     getUser: getUser
->>>>>>> Incorporate json web tokens to restrict access to other pages
   };
 
 });
