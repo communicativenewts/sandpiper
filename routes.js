@@ -1,13 +1,6 @@
 //require schemas from Models folder
-<<<<<<< HEAD
 var model = require('./models.js')
-=======
-var model = require('./models.js');
-<<<<<<< HEAD
->>>>>>> Add json web token dependency and set up framework
-=======
 var jwt = require('jwt-simple');
->>>>>>> Add to jwt functionality
 
 //export routes to app file
 module.exports = function(app, express) {
@@ -29,14 +22,8 @@ module.exports = function(app, express) {
             if (err) {
               console.log(err);
             } else {
-<<<<<<< HEAD
-              res.status(200).send(newUser);
-=======
-              console.log('New user created.');
               var token = jwt.encode(user, 'secret');
               res.json({token: token});
-              // res.status(200).send(newUser);
->>>>>>> Add to jwt functionality
             }
           });
         } else {
@@ -59,29 +46,11 @@ module.exports = function(app, express) {
           // USER DOES NOT EXIST
           res.redirect('/');
         } else {
-<<<<<<< HEAD
           if (user.password === password) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            res.status(200).send(user);
-=======
-            // CREATE SESSION
-            res.redirect('/dashboard');
->>>>>>> Add json web token dependency and set up framework
-          } else {
-            // INCORRECT PASSWORD
-            res.redirect('/');
-=======
-            window.sandpiperId = user._id;
-=======
-          // COMPARE PASSWORDS
-          if (user.password === password) {
->>>>>>> Incorporate json web tokens to restrict access to other pages
             var token = jwt.encode(user, 'secret');
             res.json({token: token});
           } else {
             console.log('Incorrect Password.');
->>>>>>> Add to jwt functionality
           }
         }
       }
@@ -301,17 +270,4 @@ module.exports = function(app, express) {
       }
     });
   });
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 };
-=======
-};
-
-
-
-
->>>>>>> Add json web token dependency and set up framework
-=======
-};
->>>>>>> Add jwt to routes
