@@ -4,11 +4,6 @@ var model = require('./models.js')
 //export routes to app file
 module.exports = function(app, express) {
 
-
-// ****************************************
-// *** NEW ROUTES *************************
-// ****************************************
-
   // ADD NEW USER
   app.post('/api/signup/', function(req, res) {
     var newUser = new model.User();
@@ -16,7 +11,7 @@ module.exports = function(app, express) {
     newUser.password = req.body.password;
     newUser.email = req.body.email;
 
-    console.log('Checking for username conflict...');
+    // CHECK IF USER ALREADY EXISTS
     model.User.findOne({username: newUser.username}, function(err, user) {
       if (err) {
         console.log(err);
@@ -26,12 +21,10 @@ module.exports = function(app, express) {
             if (err) {
               console.log(err);
             } else {
-              console.log('New user created.');
               res.status(200).send(newUser);
             }
           });
         } else {
-          console.log('User already exists.');
           res.status(200).send('User already exists.');
         }
       }
@@ -43,29 +36,18 @@ module.exports = function(app, express) {
     var username = req.body.username;
     var password = req.body.password;
 
-    console.log('Checking for user...');
     model.User.findOne({username: username}, function(err, user) {
       if (err) {
         console.log(err);
       } else {
         if (!user) {
-          console.log('User does not exist.');
+          // USER DOES NOT EXIST
           res.redirect('/');
         } else {
-          // COMPARE PASSWORDS
-          // bcrypt.compare(password, user.get('password'), function(err, match) {
-          //   if (match) {
-          //     util.createSession(req, res, user);
-          //   } else {
-          //     res.redirect('/login');
-          //   }
-          // });
           if (user.password === password) {
-            // CREATE SESSION
-            console.log('Successfully Logged In.');
             res.status(200).send(user);
           } else {
-            console.log('Incorrect Password.');
+            // INCORRECT PASSWORD
             res.redirect('/');
           }
         }
@@ -75,7 +57,6 @@ module.exports = function(app, express) {
 
   // GET USER BY USERNAME
   app.get('/api/users/:username/', function(req, res) {
-    console.log('Finding User...');
     var username = req.params.username;
     model.User.findOne({username: username}, function(err, user) {
       if (err) {
@@ -88,7 +69,6 @@ module.exports = function(app, express) {
 
   // ADD NEW SITE TO USER
   app.post('/api/users/:id/sites/', function(req, res) {
-    console.log('Adding Site...');
     var userId = req.params.id;
 
     var newSite = new model.Site();
@@ -101,7 +81,6 @@ module.exports = function(app, express) {
       if (err) {
         console.log(err);
       } else {
-        console.log('Site saved to DB.');
         model.User.findById(userId, function(err, user) {
           user.sites.push(newSite);
           user.save(function(err) {
@@ -118,7 +97,6 @@ module.exports = function(app, express) {
 
   // GET ALL USER SITES
   app.get('/api/users/:id/sites', function(req, res) {
-    console.log('Finding all user sites...');
     var userId = req.params.id;
     model.Site.find({_user: userId}, function(err, sites) {
       if (err) {
@@ -131,7 +109,6 @@ module.exports = function(app, express) {
 
   // GET SPECIFIC SITE
   app.get('/api/sites/:id/', function(req, res) {
-    console.log('Finding Site...');
     var siteId = req.params.id;
     model.Site.findById(siteId, function(err, site) {
       if (err) {
@@ -144,23 +121,20 @@ module.exports = function(app, express) {
 
   // ADD NEW SITE CLICK
   app.post('/api/sites/:id/clicks/', function(req, res) {
-    console.log('Adding Click...');
     var siteId = req.params.id;
 
     var url = req.body.url;
     var date = Date();
 
     model.linkClickModel.findOne({url: url, _site: siteId}, function(err, click) {
-      // if click already in database, add to entry
+    // IF CLICK ENTRY ALREADY IN DATABASE, ADD TO IT
       if (click) {
-        console.log('Matching click:', click);
         click.count ++;
         click.date.push(date);
         click.save();
         res.status(200).send('Click updated.');
       } else {
-        // otherwise make new entry
-        console.log('No matching click found.');
+    // OTHERWISE CREATE NEW CLICK ENTRY
         var newClick = new model.linkClickModel();
         newClick._site = siteId;
         newClick.url = url;
@@ -171,7 +145,6 @@ module.exports = function(app, express) {
           if (err) {
             console.log(err);
           } else {
-            console.log('Click saved to DB.');
             model.Site.findById(siteId, function(err, site) {
               site.clicks.push(newClick);
               site.save(function(err) {
@@ -190,7 +163,6 @@ module.exports = function(app, express) {
 
   // GET ALL CLICKS FOR SITE
   app.get('/api/sites/:id/clicks/', function(req, res) {
-    console.log('Finding site clicks...');
     var siteId = req.params.id;
     model.linkClickModel.find({_site: siteId}, function(err, clicks) {
       if (err) {
@@ -203,7 +175,6 @@ module.exports = function(app, express) {
 
   // GET SPECIFIC SITE CLICK
   app.get('/api/clicks/:id/', function(req, res) {
-    console.log('Finding Click...');
     var clickId = req.params.id;
     model.linkClickModel.findById(clickId, function(err, click) {
       if (err) {
@@ -216,23 +187,20 @@ module.exports = function(app, express) {
 
   // ADD NEW SITE VIEW
   app.post('/api/sites/:id/views/', function(req, res) {
-    console.log('Adding View...');
     var siteId = req.params.id;
 
     var title = req.body.title;
     var date = Date();
 
     model.pageViewModel.findOne({title: title, _site: siteId}, function(err, view) {
-      // if view already in database, add to entry
+    // IF VIEW ENTRY EXISTS IN DATABASE, ADD TO IT
       if (view) {
-        console.log('Matching view:', view);
         view.count ++;
         view.date.push(date);
         view.save();
         res.status(200).send('view updated.');
       } else {
-        // otherwise make new entry
-        console.log('No matching view found.');
+    // OTHERWISE CREATE NEW VIEW ENTRY
         var newView = new model.pageViewModel();
         newView._site = siteId;
         newView.title = title;
@@ -243,7 +211,6 @@ module.exports = function(app, express) {
           if (err) {
             console.log(err);
           } else {
-            console.log('View saved to DB.');
             model.Site.findById(siteId, function(err, site) {
               site.views.push(newView);
               site.save(function(err) {
@@ -262,7 +229,6 @@ module.exports = function(app, express) {
 
   // GET ALL VIEWS FOR SITE
   app.get('/api/sites/:id/views/', function(req, res) {
-    console.log('Finding site views...');
     var siteId = req.params.id;
     model.pageViewModel.find({_site: siteId}, function(err, views) {
       if (err) {
@@ -275,7 +241,6 @@ module.exports = function(app, express) {
 
   // GET SPECIFIC SITE VIEW
   app.get('/api/views/:id/', function(req, res) {
-    console.log('Finding View...');
     var viewId = req.params.id;
     model.pageViewModel.findById(viewId, function(err, view) {
       if (err) {
@@ -286,129 +251,4 @@ module.exports = function(app, express) {
     });
   });
 
-// ****************************************
-// ****************************************
-// ****************************************
-
-
-  /* linkClick route */
-  //GET request for all data
-  app.get('/linkClickAll', function(req, res) {
-    //find all urls in database
-    model.linkClickModel.find({}, function(err, links) {
-      if(err) {
-        throw err;
-      } else {
-        res.status(200).send(links);
-      }
-    });
-  });
-
-  //GET request for a specified url
-  app.get('/linkClick', function(req, res) {
-    //pull url from query
-    var url = req.query.url;
-    //find url in database
-    model.linkClickModel.findOne({url: url}, function(err, link) {
-      if(err) {
-        throw err;
-      } else {
-        res.status(200).send(link);
-      }
-    });
-  });
-
-  //POST request
-  app.post('/linkClick', function(req, res) {
-    //pull url from request body
-    var url = req.body.url;
-    //create new timestamp
-    var date = Date();
-    //check if url exists in database
-    model.linkClickModel.findOne({url: url}, function(err, link) {
-      //if it exists, update count and add timestamp
-      if(link) {
-        link.count++;
-        link.date.push(date);
-        link.save();
-        res.status(200).send("Successfully updated link count")
-      //if not, create new record, set count to 1 and add timestamp (in array)
-      } else {
-        model.linkClickModel.create({
-          url: url,
-          count: 1,
-          date: [date]
-        }, function(err) {
-          if(err) {
-            throw err;
-          } else {
-            res.status(200).send("Successfully created new link record");
-          }
-        });
-      }
-    });
-  });
-
-  /* pageView route */
-  //GET request for a specified page
-  app.get('/pageViewAll', function(req, res) {
-    //find all pages in database
-    model.pageViewModel.find({}, function(err, pages) {
-      if(err) {
-        throw err;
-      } else {
-        res.status(200).send(pages);
-      }
-    });
-  });
-
-  //GET request for a specified page
-  app.get('/pageView', function(req, res) {
-    //pull title from query
-    var title = req.query.title;
-    //find title in database
-    model.pageViewModel.findOne({title: title}, function(err, page) {
-        if(err) {
-        throw err;
-      } else {
-        res.status(200).send(page);
-      }
-    });
-  });
-
-  //POST request
-  app.post('/pageView', function(req, res) {
-    //pull title from request body
-    var title = req.body.title;
-    //create new timestamp
-    var date = Date();
-    //check if title exists in database
-    model.pageViewModel.findOne({title: title}, function(err, page) {
-      //if it exists, update count and add timestamp
-      if(page) {
-        page.count++;
-        page.date.push(date);
-        page.save();
-        res.status(200).send("Successfully updated page count")
-      //if not, create new record, set count to 1 and add timestamp (in array)
-      } else {
-        model.pageViewModel.create({
-          title: title,
-          count: 1,
-          date: [date]
-        }, function(err) {
-          if(err) {
-            throw err;
-          } else {
-            res.status(200).send("Successfully created new page record");
-          }
-        });
-      }
-    });
-  });
-
 };
-
-
-
-

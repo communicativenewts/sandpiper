@@ -47,4 +47,4 @@ angular.module('sharkanalytics',
     .otherwise({
       redirectTo: '/login'
     })
-  })
+  });

@@ -1,5 +1,5 @@
 {
-  "name": "sharkanalytics",
+  "name": "sandpiper",
   "version": "1.0.0",
   "description": "analytics and data visualization tool",
   "scripts": {
@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sharkanalytics"
+    "url": "https://github.com/communicativenewts/sandpiper"
   },
   "keywords": [
     "analytics",
     "visualization"
   ],
-  "author": "sharkanalytics",
+  "author": "sandpiper",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/sharkanalytics/sharkanalytics/issues"
+    "url": "https://github.com/communicativenewts/sandpiper/issues"
   },
-  "homepage": "https://github.com/sharkanalytics/sharkanalytics/blob/master/README.md",
+  "homepage": "https://github.com/communicativenewts/sandpiper/blob/master/README.md",
   "dependencies": {
     "angular": "^1.6.1",
     "angular-chart.js": "^1.1.1",
