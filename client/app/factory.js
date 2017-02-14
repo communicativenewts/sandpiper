@@ -108,6 +108,7 @@ angular.module('sharkanalytics.factory', [])
 .factory('Auth', function($http, $location, $window) {
   // LOGIN USER
   var loginUser = function(user) {
+    console.log('Inside loginUser, Auth factory.');
     return $http({
       method: 'POST',
       url: '/api/login/',
@@ -148,6 +149,15 @@ angular.module('sharkanalytics.factory', [])
     return !!$window.localStorage.getItem('sandpiper.analytics');
   };
 
+  var getUser = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/signedin'
+    }).then(function(resp) {
+      return resp.data;
+    });
+  };
+
   // SIGNOUT USER
   var signout = function() {
     $window.localStorage.removeItem('sandpiper.analytics');
@@ -163,8 +173,13 @@ angular.module('sharkanalytics.factory', [])
     addNewSite: addNewSite
 =======
     isAuth: isAuth,
+<<<<<<< HEAD
     signout: signout
 >>>>>>> Set up Auth factory
+=======
+    signout: signout,
+    getUser: getUser
+>>>>>>> Incorporate json web tokens to restrict access to other pages
   };
 
 });
