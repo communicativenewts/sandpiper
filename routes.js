@@ -59,6 +59,7 @@ module.exports = function(app, express) {
           // USER DOES NOT EXIST
           res.redirect('/');
         } else {
+<<<<<<< HEAD
           if (user.password === password) {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -72,6 +73,10 @@ module.exports = function(app, express) {
             res.redirect('/');
 =======
             window.sandpiperId = user._id;
+=======
+          // COMPARE PASSWORDS
+          if (user.password === password) {
+>>>>>>> Incorporate json web tokens to restrict access to other pages
             var token = jwt.encode(user, 'secret');
             res.json({token: token});
           } else {
@@ -91,9 +96,9 @@ module.exports = function(app, express) {
     } else {
       var user = jwt.decode(token, 'secret');
       model.User.findOne({username: user.username})
-        .then(function(foundUser) {
-          if (foundUser) {
-            res.send(200);
+        .then(function(user) {
+          if (user) {
+            res.send(user);
           } else {
             res.send(401);
           }
