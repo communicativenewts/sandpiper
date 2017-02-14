@@ -303,6 +303,7 @@ module.exports = function(app, express) {
   });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 };
 =======
 };
@@ -311,3 +312,6 @@ module.exports = function(app, express) {
 
 
 >>>>>>> Add json web token dependency and set up framework
+=======
+};
+>>>>>>> Add jwt to routes
