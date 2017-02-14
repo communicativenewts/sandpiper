@@ -152,8 +152,6 @@ angular.module('sharkanalytics.factory', [])
   return {
     loginUser: loginUser,
     createUser: createUser,
-    getAllSites: getAllSites,
-    addNewSite: addNewSite
     isAuth: isAuth,
     signout: signout,
     getUser: getUser
