@@ -3,11 +3,8 @@
         <div class="col-lg-12">
             <h1 class="page-header">{{views}} Total Page Views</h1>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
     <div class="row">
-        <!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <div class="well well-lg">
                 <h4>Total Views per Page</h4>
@@ -30,7 +27,7 @@
         </div>
         <div class="col-lg-4">
             <div class="well well-lg">
-                <h4>Percentage of Total Views</h4>
+                <h4>Total Views per Day</h4>
 
                 <div ng-controller='pageViewDayController'>
                   <line-plot>
@@ -39,10 +36,8 @@
             </div>
         </div>
     </div>
-    <!-- /.row -->
-    <div class="row">
-        <!-- /.col-lg-4 -->
-        <div class="col-lg-4" ng-repeat="page in pageProperties">
+    <div class="row" ng-repeat="page in pageProperties">
+        <div class="col-lg-12">
             <div class="well well-lg">
 
               <h4>{{page.title}}:  {{page.count}}</h4>
@@ -52,131 +47,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- <div ng-controller='pageViewController'>
-
-<div class = "row">
-  <div class="col-md-3"></div>
-  <div class="col-md-5"></div>
-  <div class="col-md-4">
-  <button ng-hide="showAll" class="ng-hide" ng-click="setShowAll(true)">Show stats for all pages</button>
-  <button ng-show="showAll" ng-click="setShowAll(false)">Hide stats for all pages</button>
-  </div>
-</div>
-
-<div class = "row container-fluid">
-
-  <div class="col-md-2">
-    <h4>{{pagename}}</h4>
-    <h4>Total page views for your site:</h4>
-    <div class="pageviews">{{views}}</div>
-  </div> -->
-
-  <!--Center featured chart -->
-  <!-- <div class="col-md-6">
-    <h4 align='center'>Page Views</h4>
-    <div ng-controller='pageViewVisualsController'>
-      <line-plot id='pageView' width=300, height=200>
-    </div><br><br>
-    <h4 align='center'>Percentage of Total Views</h4>
-    <div ng-controller='pageViewPieController'>
-      <line-plot width=300, height=200>
-    </div><br>
-    <h4 align='center'>Total Page Views Per Day</h4>
-    <div ng-controller='pageViewDayController'>
-      <line-plot width=300, height=200>
-    </div><br>
-  </div> -->
-<!--Right featured chart -->
-
-<!-- <div class="col-md-4" ng-hide="hideAll">
-
-  <div ng-repeat="page in pageProperties">
-    <h4>{{page.title}}:  {{page.count}}</h4>
-    <p>Dates on which this page was clicked:</p><button ng-show="showDates" ng-click="setHideDates(true)">click to collapse</button><button ng-show="hideDates" ng-click="setHideDates(false)">click to expand</button>
-    <ul>
-    <li ng-hide="hideDates" ng-repeat="date in page.date track by $index">{{date}}</li>
-    </ul>
-  </div>
-
-  </div> -->
-
-<!--close main container-->
-<!-- </div> -->
-
-<!-- close page container-->
-<!-- </div> -->
-
-
-
-
-    <!-- <div class="row">
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Website Name
-                </div>
-                <div class="panel-body"> -->
-                    <!-- Nav tabs -->
-                    <!-- <ul class="nav nav-pills">
-                        <li class="active"><a href="/#home-pills" data-toggle="tab">Total</a>
-                        </li>
-                        <li><a href="/#profile-pills" data-toggle="tab">Percentage</a>
-                        </li>
-                        <li><a href="/#messages-pills" data-toggle="tab">Per Day</a>
-                        </li>
-                        <li><a href="/#settings-pills" data-toggle="tab">Other</a>
-                        </li>
-                    </ul> -->
-
-                    <!-- Tab panes -->
-                    <!-- <div class="tab-content">
-                        <div class="tab-pane fade in active" id="home-pills">
-                            <h4>Total Views per Page</h4>
-                            <div class="col-md-6">
-                              <div ng-controller='pageViewVisualsController'>
-                                <line-plot id='pageView' width=500, height=200>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="profile-pills">
-                            <h4>Percentage of Total Views</h4>
-                            <div class="col-md-6">
-                              <div ng-controller='pageViewPieController'>
-                                <line-plot width=500, height=200>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="messages-pills">
-                            <h4>Total Page Views per Day</h4>
-                            <div class="col-md-6">
-                              <div ng-controller='pageViewDayController'>
-                                <line-plot width=500, height=200>
-                              </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="settings-pills">
-                            <h4>Settings Tab</h4>
-                            <h4>Total Views per Page</h4>
-                            <div class="col-md-6">
-                              <div ng-controller='pageViewVisualsController'>
-                                <line-plot id='pageView' width=300, height=200>
-                              </div><br><br>
-                              <h4 align='center'>Percentage of Total Views</h4>
-                              <div ng-controller='pageViewPieController'>
-                                <line-plot width=300, height=200>
-                              </div><br>
-                              <h4 align='center'>Total Page Views Per Day</h4>
-                              <div ng-controller='pageViewDayController'>
-                                <line-plot width=300, height=200>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-          <!--   </div>
-        </div>
-    </div> -->
-
-

@@ -16,7 +16,6 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
         $scope.data = [$scope.data]; // and store it-as Plotly requires-within an array.
       });
   };
-
   $scope.refresh();
 })
 
@@ -42,11 +41,7 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
         $scope.data = [$scope.data];
       });
   };
-
-
-
   $scope.refresh();
-
 })
 
 .controller("linkClickDayController", function ($scope, Links, Users) { // our day graph controller
@@ -80,31 +75,8 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
         $scope.data = [$scope.data];
       });
   };
-
   $scope.refresh();
-
 })
-
-// .controller('linkClickLineController', function ($scope, Links) {
-
-//   var allUrls = [];
-//   var allCounts = [];
-
-//   $scope.refresh = function() {
-//     Links.getAllLinks()
-//     .then(function(response) {
-//       response.data.forEach(function(item) {
-//         allUrls.push(item.url);
-//         allCounts.push(item.count);
-//       })
-//       allCounts.sort();
-//       $scope.data = {x: allUrls, y: allCounts, type: 'line'};
-//       $scope.data = [$scope.data];
-//     });
-//   }
-
-//   $scope.refresh();
-// })
 
 .directive('linePlot', function () {
   // Create a link function
@@ -115,16 +87,13 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
           height: 250,
           margin: { 't': 40, 'b':20, 'l':40, 'r':0 },
         };
-
       Plotly.newPlot(element[0], plots, layout);
     }, true);
   }
-
   // Return this function for linking ...
   return {
       link: linkFunc
   };
-
 })
 
 .directive('overallPlot', function () {
@@ -136,14 +105,12 @@ angular.module('sharkanalyticss.linkClickPlotly', [])
           height: 200,
           margin: { 't': 40, 'b':20, 'l':40, 'r':0 },
         };
-
       Plotly.newPlot(element[0], plots, layout);
     }, true);
   }
-
   // Return this function for linking ...
   return {
       link: linkFunc
   };
 
-})
+});

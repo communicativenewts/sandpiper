@@ -1,90 +1,40 @@
 angular.module("sharkanalytics.pageView", [])
-
 .controller("pageViewController", function($scope, Pages, Users) {
 
-$scope.pageProperties = {}; // initialization block
-// $scope.showAll = true;
-// $scope.hideAll = false;
+  $scope.pageProperties = {}; // initialization block
 
-// $scope.setShowAll = function(boolean) { // boolean function block for interacting with HTML: showing and hiding divs.
-//   $scope.showAll = boolean;
-//   $scope.hideAll = !boolean;
-// }
-
-// $scope.showDates = true;
-// $scope.hideDates = false;
-
-// $scope.setHideDates = function(boolean) {
-//     $scope.hideDates = boolean;
-//     $scope.showDates = !boolean;
-// }
-
-var getView = function(pageView) {
-  Pages.getView(pageView._id).then(function(res, err) {
-    if (err) {
-      console.log('Error: getView in pageViewController.', err);
-    } else {
-      var ourData = res;
-      $scope.pageProperties[pageView.title] = {}; // local initialization block
-      $scope.pageProperties[pageView.title].count = 0;
-      $scope.pageProperties[pageView.title].title = ourData.title;
-      $scope.pageProperties[pageView.title].count = ourData.count;
-      $scope.pageProperties[pageView.title].date = ourData.date;
-    }
-  });
-};
-
-// $scope.getPage = function(page) {
-//     Pages.getPage(page).then(function (res, err) { // get our page...
-//       if (err) {
-//   		console.log("ERROR IN getPages METHOD OF PAGE VIEW CONTROLLER"); // error handling
-//   		return;
-//   	}
-//   	  var ourData = res.data;
-//       $scope.pageProperties[page] = {}; // local initialization block
-//       $scope.pageProperties[page].count = 0;
-//       $scope.pageProperties[page].title = ourData.title;
-//       $scope.pageProperties[page].count = ourData.count;
-//       $scope.pageProperties[page].date = ourData.date;
-//   })
-//   };
-
-// var allViews = 0;
-
-$scope.views = 0;
-
-var getAllViews = function() {
-  Pages.getSiteViews(Users.getUserSite())
-    .then(function(res, err) {
+  var getView = function(pageView) {
+    Pages.getView(pageView._id).then(function(res, err) {
       if (err) {
-        console.log('Error: getAllViews in pageViewController.', err);
+        console.log('Error: getView in pageViewController.', err);
       } else {
-        $scope.ourPages = res;
-        res.forEach(function(element) {
-          $scope.views += element.count;
-          getView(element);
-        });
+        var ourData = res;
+        $scope.pageProperties[pageView.title] = {}; // local initialization block
+        $scope.pageProperties[pageView.title].count = 0;
+        $scope.pageProperties[pageView.title].title = ourData.title;
+        $scope.pageProperties[pageView.title].count = ourData.count;
+        $scope.pageProperties[pageView.title].date = ourData.date;
       }
     });
-};
+  };
 
-getAllViews();
+  $scope.views = 0;
 
-// $scope.getAllPages = function () {
-//   Pages.getAllPages().then(function (res, err) { // get all pages...
-//   	if (err) {
-//   		console.log("ERROR IN getAllPages METHOD OF PAGE VIEW CONTROLLER"); // error handling
-//   		return;
-//   	}
-//   	$scope.ourPages = res.data;
-//   	res.data.forEach(function (element) { // for all the elements in the data object...
-//       allViews+=element.count; // update the count property
-//       $scope.views = allViews;  // put allViews under our scope.
-//   		$scope.getPage(element.title); // get page with the selected title
-//   	})
-//   })
-// }
+  var getAllViews = function() {
+    Pages.getSiteViews(Users.getUserSite())
+      .then(function(res, err) {
+        if (err) {
+          console.log('Error: getAllViews in pageViewController.', err);
+        } else {
+          $scope.ourPages = res;
+          res.forEach(function(element) {
+            $scope.views += element.count;
+            getView(element);
+          });
+        }
+      });
+  };
 
-// $scope.getAllPages();
+  getAllViews();
 
-})
+});

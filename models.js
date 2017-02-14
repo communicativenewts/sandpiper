@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var db = require('./database.js')
 
-//create new users schema
+// Users
 var userSchema = mongoose.Schema({
   // _id: // AUTO-GENERATED
   username: String,
@@ -11,17 +11,19 @@ var userSchema = mongoose.Schema({
   sites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Site' }]
 });
 
+// Sites
 var siteSchema = mongoose.Schema({
   // _id: // AUTO-GENERATED
   _user: { type: mongoose.Schema.ObjectId, ref: 'User' },
   url: String,
   title: String,
+  status: String,
   date: String,
   clicks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'linkClickSchema' }],
   views: [{ type: mongoose.Schema.Types.ObjectId, ref: 'pageViewSchema' }]
 });
 
-//create new linkClick schema
+// Link Clicks
 var linkClickSchema = mongoose.Schema({
   // _id: // AUTO-GENERATED
   _site: { type: mongoose.Schema.Types.ObjectId, ref: 'Site' },
@@ -30,7 +32,7 @@ var linkClickSchema = mongoose.Schema({
   date: Array
 });
 
-//create new pageView schema
+// Page Views
 var pageViewSchema = mongoose.Schema({
   // _id: // AUTO-GENERATED
   _site: { type: mongoose.Schema.Types.ObjectId, ref: 'Site' },
