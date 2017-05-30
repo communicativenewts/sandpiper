@@ -13,8 +13,9 @@ angular.module('app.login', [])
     $scope.signin = function() {
       console.log('Logging In:', $scope.user);
       Auth.loginUser($scope.user)
-        .then(function(token) {
-          $window.localStorage.setItem('sandpiper.analytics', token);
+        .then(function(data) { // {user: user, token: token}
+          $window.localStorage.setItem('sandpiper.analytics', data.token);
+          Users.setUserId(data.user._id);
           $location.path('/dashboard');
         })
         .catch(function(err) {

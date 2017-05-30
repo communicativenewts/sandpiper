@@ -61,6 +61,11 @@ angular.module('sharkanalytics.factory', [])
   var userId = null;
   var userSite = null;
 
+  // SET USER ID
+  var setUserId = function(id) {
+    userId = id;
+  };
+
   // RETURN USER ID
   var getUserId = function() {
     return userId;
@@ -98,6 +103,7 @@ angular.module('sharkanalytics.factory', [])
   };
 
   return {
+    setUserId: setUserId,
     getUserId: getUserId,
     setUserSite: setUserSite,
     getUserSite: getUserSite,
@@ -105,16 +111,17 @@ angular.module('sharkanalytics.factory', [])
     addNewSite: addNewSite
   }
 })
+
+// AUTH FACTORY
 .factory('Auth', function($http, $location, $window) {
   // LOGIN USER
   var loginUser = function(user) {
-    console.log('Inside loginUser, Auth factory.');
     return $http({
       method: 'POST',
       url: '/api/login/',
       data: user
     }).then(function(resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
@@ -125,7 +132,7 @@ angular.module('sharkanalytics.factory', [])
       url: '/api/signup/',
       data: user
     }).then(function(resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
