@@ -23,7 +23,7 @@ module.exports = function(app, express) {
               console.log(err);
             } else {
               var token = jwt.encode(user, 'secret');
-              res.json({token: token});
+              res.json({user: newUser, token: token});
             }
           });
         } else {
@@ -44,11 +44,12 @@ module.exports = function(app, express) {
       } else {
         if (!user) {
           // USER DOES NOT EXIST
+          console.log('User does not exist.');
           res.redirect('/');
         } else {
           if (user.password === password) {
             var token = jwt.encode(user, 'secret');
-            res.json({token: token});
+            res.json({user: user, token: token});
           } else {
             console.log('Incorrect Password.');
           }

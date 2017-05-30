@@ -5,8 +5,10 @@ angular.module('app.signup', [])
 
     $scope.signup = function() {
       Auth.createUser($scope.user)
-        .then(function(token) {
-          $window.localStorage.setItem('sandpiper.analytics', token);
+        .then(function(data) { // {user: user, token: token}
+          console.log('Signup Data:', data);
+          $window.localStorage.setItem('sandpiper.analytics', data.token);
+          Users.setUserId(data.user._id);
           $location.path('/onboarding');
         })
         .catch(function(err) {
